@@ -49,11 +49,11 @@ export default function Slide03({ isActive }: SlideProps) {
             {TATHAMPLAPHOW_INFO.description}
           </p>
           <div className="flex flex-wrap justify-center gap-3 items-center">
-            <Badge variant="primary" size="lg" className="font-sarabun">
+            <Badge variant="info" size="md" className="font-sarabun">
               <Clock className="w-4 h-4 mr-1" />
               นัดพบ {DEPARTURE_INFO.meetingTime}
             </Badge>
-            <Badge variant="secondary" size="lg" className="font-sarabun">
+            <Badge variant="success" size="md" className="font-sarabun">
               <UtensilsCrossed className="w-4 h-4 mr-1" />
               เปิด {TATHAMPLAPHOW_INFO.hours}
             </Badge>
@@ -158,7 +158,7 @@ export default function Slide03({ isActive }: SlideProps) {
                     />
                     {menu.isSignature && (
                       <div className="absolute top-3 right-3">
-                        <Badge variant="primary" size="sm" className="font-sarabun">
+                        <Badge variant="warning" size="sm" className="font-sarabun">
                           <Star className="w-3 h-3 mr-1" />
                           เมนูเด็ด
                         </Badge>
