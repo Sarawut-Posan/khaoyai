@@ -16,3 +16,7 @@ export type { AccordionProps, AccordionItem } from './Accordion';
 
 export { default as ProgressDots } from './ProgressDots';
 export type { ProgressDotsProps } from './ProgressDots';
+
+export { default as Image } from './Image';
+
+export { default as ImageSkeleton } from './ImageSkeleton';

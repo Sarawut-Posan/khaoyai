@@ -1,4 +1,8 @@
+'use client';
+
 import React from 'react';
+import { motion } from 'framer-motion';
+import Image from './Image';
 
 export interface CardProps {
   title: string;
@@ -21,12 +25,12 @@ export default function Card({
 }: CardProps) {
   const isClickable = !!onClick;
   
-  const baseStyles = 'bg-white rounded-xl shadow-md transition-shadow duration-300 overflow-hidden';
-  const hoverStyles = isClickable ? 'hover:shadow-lg cursor-pointer' : '';
+  const baseStyles = 'bg-white rounded-xl shadow-md overflow-hidden';
+  const hoverStyles = isClickable ? 'cursor-pointer' : '';
   const combinedClassName = `${baseStyles} ${hoverStyles} ${className}`;
   
   return (
-    <div
+    <motion.div
       className={combinedClassName}
       onClick={onClick}
       role={isClickable ? 'button' : undefined}
@@ -37,15 +41,23 @@ export default function Card({
           onClick?.();
         }
       } : undefined}
+      whileHover={{
+        scale: 1.05,
+        boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+        transition: { duration: 0.3 },
+      }}
+      whileTap={isClickable ? { scale: 0.98 } : {}}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
     >
       {/* Image section */}
       {image && (
-        <div className="relative w-full h-48 bg-sand overflow-hidden">
-          <img
+        <div className="relative w-full h-48 overflow-hidden">
+          <Image
             src={image}
             alt={title}
-            className="w-full h-full object-cover"
-            loading="lazy"
+            className="w-full h-full"
           />
         </div>
       )}
@@ -78,6 +90,6 @@ export default function Card({
           {footer}
         </div>
       )}
-    </div>
+    </motion.div>
   );
 }

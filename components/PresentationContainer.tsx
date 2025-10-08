@@ -3,6 +3,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence, PanInfo } from 'framer-motion';
 import ProgressDots from './ui/ProgressDots';
+import { useReducedMotion, getTransition } from '@/lib/hooks/useReducedMotion';
+import { slideVariants, slideTransition } from '@/lib/animations';
 
 interface PresentationContainerProps {
   slides: React.ComponentType<{ isActive?: boolean; onNavigate?: (slideIndex: number) => void }>[];
@@ -16,6 +18,7 @@ export default function PresentationContainer({
   const [currentSlide, setCurrentSlide] = useState<number>(initialSlide);
   const [direction, setDirection] = useState<number>(0);
   const totalSlides = slides.length;
+  const prefersReducedMotion = useReducedMotion();
 
   // Navigation functions
   const goToSlide = useCallback(
@@ -102,26 +105,8 @@ export default function PresentationContainer({
     }
   };
 
-  // Slide transition variants
-  const slideVariants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 1000 : -1000,
-      opacity: 0,
-    }),
-    center: {
-      x: 0,
-      opacity: 1,
-    },
-    exit: (direction: number) => ({
-      x: direction < 0 ? 1000 : -1000,
-      opacity: 0,
-    }),
-  };
-
-  const slideTransition = {
-    x: { type: 'spring' as const, stiffness: 300, damping: 30 },
-    opacity: { duration: 0.3 },
-  };
+  // Get transition based on reduced motion preference
+  const transition = getTransition(slideTransition, prefersReducedMotion);
 
   const CurrentSlideComponent = slides[currentSlide];
 
@@ -138,7 +123,7 @@ export default function PresentationContainer({
               initial="enter"
               animate="center"
               exit="exit"
-              transition={slideTransition}
+              transition={transition}
               drag="x"
               dragConstraints={{ left: 0, right: 0 }}
               dragElastic={0.2}
