@@ -1,7 +1,6 @@
 'use client';
 
 import PresentationContainer from '@/components/PresentationContainer';
-import PlaceholderSlide from '@/components/slides/PlaceholderSlide';
 import Slide01 from '@/components/slides/Slide01';
 import Slide02 from '@/components/slides/Slide02';
 import Slide03 from '@/components/slides/Slide03';
@@ -13,9 +12,8 @@ import Slide08 from '@/components/slides/Slide08';
 import Slide09 from '@/components/slides/Slide09';
 import Slide10 from '@/components/slides/Slide10';
 import Slide11 from '@/components/slides/Slide11';
-import { SlideProps } from '@/lib/types';
+import Slide12 from '@/components/slides/Slide12';
 
-// Create placeholder slide components for testing
 const slides = [
   Slide01,
   Slide02,
@@ -28,7 +26,7 @@ const slides = [
   Slide09,
   Slide10,
   Slide11,
-  (props: SlideProps) => <PlaceholderSlide slideNumber={12} title="Final Checklist" backgroundColor="bg-sage/20" {...props} />,
+  Slide12,
 ];
 
 export default function Home() {
