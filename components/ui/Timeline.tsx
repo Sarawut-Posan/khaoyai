@@ -1,8 +1,12 @@
+'use client';
+
 import React from 'react';
-import { 
-  Car, Coffee, Activity, Utensils, ShoppingCart, 
-  Home, Moon, Sun, Bike, Zap, Target, Crosshair, 
-  Heart, Truck 
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import {
+  Car, Coffee, Activity, Utensils, ShoppingCart,
+  Home, Moon, Sun, Bike, Zap, Target, Crosshair,
+  Heart, Truck, MapPin, Calendar, Flame
 } from 'lucide-react';
 
 export interface TimelineItem {
@@ -10,6 +14,8 @@ export interface TimelineItem {
   title: string;
   icon: string;
   description?: string;
+  image?: string;
+  isDayMarker?: boolean;
 }
 
 export interface TimelineProps {
@@ -34,6 +40,9 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   crosshair: Crosshair,
   heart: Heart,
   truck: Truck,
+  'map-pin': MapPin,
+  calendar: Calendar,
+  flame: Flame,
 };
 
 export default function Timeline({
@@ -45,84 +54,226 @@ export default function Timeline({
     const IconComponent = iconMap[iconName] || Activity;
     return <IconComponent className="w-5 h-5" />;
   };
-  
+
+  // Animation variants
+  const itemVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: (index: number) => ({
+      opacity: 1,
+      x: 0,
+      transition: {
+        delay: index * 0.1,
+        duration: 0.5,
+        ease: 'easeOut',
+      },
+    }),
+  };
+
+  const imageVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.4,
+        ease: 'easeOut',
+      },
+    },
+  };
+
   if (orientation === 'vertical') {
     return (
-      <div className={`space-y-4 ${className}`}>
-        {items.map((item, index) => (
-          <div key={index} className="flex gap-4">
-            {/* Icon and line */}
-            <div className="flex flex-col items-center">
-              <div className="flex items-center justify-center w-12 h-12 rounded-full bg-sage text-white flex-shrink-0">
-                {getIcon(item.icon)}
+      <div className={`space-y-6 ${className}`}>
+        {items.map((item, index) => {
+          // Day marker styling
+          if (item.isDayMarker) {
+            return (
+              <motion.div
+                key={index}
+                custom={index}
+                variants={itemVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: '-50px' }}
+                className="flex items-center gap-4 my-8"
+              >
+                <div className="flex items-center justify-center w-16 h-16 rounded-full bg-terracotta text-white shadow-lg">
+                  {getIcon(item.icon)}
+                </div>
+                <div>
+                  <h3 className="font-kanit text-xl md:text-2xl font-bold text-terracotta">
+                    {item.title}
+                  </h3>
+                  <p className="font-sarabun text-sm text-charcoal/60">
+                    {item.description}
+                  </p>
+                </div>
+              </motion.div>
+            );
+          }
+
+          // Regular timeline item
+          return (
+            <motion.div
+              key={index}
+              custom={index}
+              variants={itemVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-50px' }}
+              className="flex gap-4 group"
+            >
+              {/* Icon and line */}
+              <div className="flex flex-col items-center">
+                <motion.div
+                  whileHover={{ scale: 1.1 }}
+                  className="flex items-center justify-center w-12 h-12 rounded-full bg-sage text-white flex-shrink-0 shadow-md transition-shadow group-hover:shadow-lg"
+                >
+                  {getIcon(item.icon)}
+                </motion.div>
+                {index < items.length - 1 && (
+                  <div className="w-0.5 h-full min-h-[60px] bg-sage/30 mt-2" />
+                )}
               </div>
-              {index < items.length - 1 && (
-                <div className="w-0.5 h-full min-h-[40px] bg-sage/30 mt-2" />
-              )}
-            </div>
-            
-            {/* Content */}
-            <div className="flex-1 pb-8">
-              <div className="font-sarabun text-sm text-sage font-semibold mb-1">
-                {item.time}
+
+              {/* Content */}
+              <div className="flex-1 pb-8">
+                <div className="font-sarabun text-sm text-sage font-semibold mb-1">
+                  {item.time}
+                </div>
+                <h4 className="font-kanit text-lg font-semibold text-charcoal mb-2">
+                  {item.title}
+                </h4>
+                {item.description && (
+                  <p className="font-sarabun text-sm text-charcoal/70 mb-3">
+                    {item.description}
+                  </p>
+                )}
+
+                {/* Image */}
+                {item.image && (
+                  <motion.div
+                    variants={imageVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    className="relative w-full h-40 rounded-lg overflow-hidden shadow-md"
+                  >
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  </motion.div>
+                )}
               </div>
-              <h4 className="font-kanit text-lg font-semibold text-charcoal mb-1">
-                {item.title}
-              </h4>
-              {item.description && (
-                <p className="font-sarabun text-sm text-charcoal/70">
-                  {item.description}
-                </p>
-              )}
-            </div>
-          </div>
-        ))}
+            </motion.div>
+          );
+        })}
       </div>
     );
   }
   
-  // Horizontal orientation
+  // Horizontal orientation (for desktop only - show as scrollable cards)
   return (
     <div className={`relative ${className}`}>
-      {/* Progress line */}
-      <div className="absolute top-6 left-0 right-0 h-0.5 bg-sage/30 hidden md:block" />
-      <div 
-        className="absolute top-6 left-0 h-0.5 bg-sage transition-all duration-500 hidden md:block"
-        style={{ width: '100%' }}
-      />
-      
-      {/* Timeline items */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:flex lg:justify-between gap-6 md:gap-4">
-        {items.map((item, index) => (
-          <div 
-            key={index} 
-            className="flex flex-col items-center text-center relative group"
-          >
-            {/* Icon */}
-            <div className="relative z-10 flex items-center justify-center w-12 h-12 rounded-full bg-sage text-white mb-3 transition-transform duration-300 group-hover:scale-110">
-              {getIcon(item.icon)}
-            </div>
-            
-            {/* Time */}
-            <div className="font-sarabun text-xs md:text-sm text-sage font-semibold mb-1">
-              {item.time}
-            </div>
-            
-            {/* Title */}
-            <h4 className="font-kanit text-sm md:text-base font-semibold text-charcoal mb-1 px-2">
-              {item.title}
-            </h4>
-            
-            {/* Description - shown on hover */}
-            {item.description && (
-              <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 w-48 p-3 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-20">
-                <p className="font-sarabun text-xs text-charcoal">
-                  {item.description}
-                </p>
-              </div>
-            )}
-          </div>
-        ))}
+      <div className="overflow-x-auto pb-6 scrollbar-hide">
+        <div className="flex gap-6 min-w-max px-4">
+          {items.map((item, index) => {
+            // Day marker for horizontal
+            if (item.isDayMarker) {
+              return (
+                <motion.div
+                  key={index}
+                  custom={index}
+                  variants={itemVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  className="flex flex-col items-center justify-center min-w-[200px] bg-terracotta/10 rounded-xl p-6 border-2 border-terracotta"
+                >
+                  <div className="flex items-center justify-center w-16 h-16 rounded-full bg-terracotta text-white shadow-lg mb-3">
+                    {getIcon(item.icon)}
+                  </div>
+                  <h3 className="font-kanit text-lg font-bold text-terracotta text-center">
+                    {item.title}
+                  </h3>
+                  <p className="font-sarabun text-xs text-charcoal/60 text-center mt-1">
+                    {item.description}
+                  </p>
+                </motion.div>
+              );
+            }
+
+            // Regular timeline card
+            return (
+              <motion.div
+                key={index}
+                custom={index}
+                variants={itemVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                whileHover={{ y: -8 }}
+                className="flex flex-col items-center min-w-[240px] max-w-[280px] bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group"
+              >
+                {/* Image */}
+                {item.image && (
+                  <div className="relative w-full h-40 overflow-hidden">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      sizes="280px"
+                    />
+                    {/* Overlay gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+
+                    {/* Time badge */}
+                    <div className="absolute top-3 right-3 bg-sage text-white px-3 py-1 rounded-full font-sarabun text-xs font-semibold shadow-lg">
+                      {item.time}
+                    </div>
+                  </div>
+                )}
+
+                {/* Content */}
+                <div className="p-4 flex-1 w-full">
+                  <div className="flex items-start gap-3 mb-2">
+                    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-sage/20 text-sage flex-shrink-0">
+                      {getIcon(item.icon)}
+                    </div>
+                    <div className="flex-1">
+                      {!item.image && (
+                        <div className="font-sarabun text-xs text-sage font-semibold mb-1">
+                          {item.time}
+                        </div>
+                      )}
+                      <h4 className="font-kanit text-base font-semibold text-charcoal leading-tight">
+                        {item.title}
+                      </h4>
+                    </div>
+                  </div>
+
+                  {item.description && (
+                    <p className="font-sarabun text-sm text-charcoal/70 leading-relaxed">
+                      {item.description}
+                    </p>
+                  )}
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="text-center mt-2">
+        <p className="font-sarabun text-xs text-charcoal/40">
+          ← เลื่อนดูกิจกรรมทั้งหมด →
+        </p>
       </div>
     </div>
   );

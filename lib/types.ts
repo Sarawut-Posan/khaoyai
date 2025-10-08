@@ -47,4 +47,6 @@ export interface TimelineItem {
   title: string;
   icon: string;
   description?: string;
+  image?: string;
+  isDayMarker?: boolean;
 }

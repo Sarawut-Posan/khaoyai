@@ -20,64 +20,6 @@ export const TRIP_INFO = {
   teamSize: 14,
 } as const;
 
-// Timeline data for Slide 02
-export const TIMELINE_DATA: TimelineItem[] = [
-  {
-    time: '06:00',
-    title: 'ออกเดินทางจากกรุงเทพฯ',
-    icon: 'car',
-    description: 'พบกันที่จุดนัดหมาย',
-  },
-  {
-    time: '08:00',
-    title: 'แวะทานอาหารเช้า',
-    icon: 'coffee',
-    description: 'ร้านอาหารระหว่างทาง',
-  },
-  {
-    time: '10:00',
-    title: 'ถึง Thong Somboon Club',
-    icon: 'activity',
-    description: 'กิจกรรมหลัก',
-  },
-  {
-    time: '13:00',
-    title: 'ทานอาหารกลางวัน',
-    icon: 'utensils',
-    description: 'ร้านอาหารในเขาใหญ่',
-  },
-  {
-    time: '15:00',
-    title: 'ช้อปปิ้งที่ Makro',
-    icon: 'shopping-cart',
-    description: 'ซื้อของทำอาหารเย็น',
-  },
-  {
-    time: '17:00',
-    title: 'เช็คอินวิลล่า',
-    icon: 'home',
-    description: 'DN Poolvilla Khaoyai',
-  },
-  {
-    time: '19:00',
-    title: 'ทำอาหารเย็นและกิจกรรมยามค่ำ',
-    icon: 'moon',
-    description: 'ปาร์ตี้ริมสระ',
-  },
-  {
-    time: '09:00',
-    title: 'วันที่ 2: อาหารเช้าและกิจกรรมเช้า',
-    icon: 'sun',
-    description: 'เลือกกิจกรรมตามใจชอบ',
-  },
-  {
-    time: '14:00',
-    title: 'เดินทางกลับกรุงเทพฯ',
-    icon: 'car',
-    description: 'เช็คเอาท์และเดินทางกลับ',
-  },
-];
-
 // External image URLs (Unsplash - free for personal use)
 export const IMAGE_URLS = {
   // Hero and backgrounds
@@ -120,6 +62,101 @@ export const IMAGE_URLS = {
   forest: 'https://images.unsplash.com/photo-1511497584788-876760111969?w=1200&q=80', // Forest path
   grassField: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200&q=80', // Grass field
 } as const;
+
+// Timeline data for Slide 02
+export const TIMELINE_DATA: TimelineItem[] = [
+  {
+    time: 'วันที่ 1',
+    title: 'เสาร์ 8 พ.ย. 2568',
+    icon: 'calendar',
+    description: 'วันแรกของการเดินทาง',
+    isDayMarker: true,
+  },
+  {
+    time: '10:00',
+    title: 'พบกันที่ Tathamplaphow Restaurant',
+    icon: 'map-pin',
+    description: 'นัดพบที่ร้าน Tathamplaphow Restaurant',
+    image: IMAGE_URLS.breakfastKrua,
+  },
+  {
+    time: '11:00',
+    title: 'เดินทางสู่เขาใหญ่',
+    icon: 'car',
+    description: 'เดินทางด้วยรถตู้ ระยะทาง ~130 กม.',
+    image: IMAGE_URLS.hero,
+  },
+  {
+    time: '13:00',
+    title: 'ทานอาหารกลางวัน',
+    icon: 'utensils',
+    description: 'ร้านอาหารในเขาใหญ่',
+    image: IMAGE_URLS.kruaKhaoYai,
+  },
+  {
+    time: '14:30',
+    title: 'กิจกรรมที่ Thong Somboon Club',
+    icon: 'activity',
+    description: 'ATV, Zipline, Paintball และอื่นๆ',
+    image: IMAGE_URLS.atv,
+  },
+  {
+    time: '17:00',
+    title: 'ช้อปปิ้งที่ Makro',
+    icon: 'shopping-cart',
+    description: 'ซื้อของทำอาหารเย็นและของว่าง',
+    image: IMAGE_URLS.shopping,
+  },
+  {
+    time: '18:30',
+    title: 'เช็คอินวิลล่า',
+    icon: 'home',
+    description: 'DN Poolvilla Khaoyai - แบ่งห้องและพักผ่อน',
+    image: IMAGE_URLS.villa,
+  },
+  {
+    time: '20:00',
+    title: 'ปาร์ตี้ริมสระ & ปิ้งย่าง',
+    icon: 'flame',
+    description: 'ทำอาหารเย็น คาราโอเกะ เล่นน้ำ',
+    image: IMAGE_URLS.villaPool,
+  },
+  {
+    time: 'วันที่ 2',
+    title: 'อาทิตย์ 9 พ.ย. 2568',
+    icon: 'calendar',
+    description: 'วันที่สองและเดินทางกลับ',
+    isDayMarker: true,
+  },
+  {
+    time: '08:00',
+    title: 'อาหารเช้าที่วิลล่า',
+    icon: 'coffee',
+    description: 'ทานอาหารเช้าพร้อมกัน',
+    image: IMAGE_URLS.breakfastKrua,
+  },
+  {
+    time: '10:00',
+    title: 'กิจกรรมเช้า (ตัวเลือก)',
+    icon: 'sun',
+    description: 'คาเฟ่ จุดชมวิว หรือช้อปปิ้งของฝาก',
+    image: IMAGE_URLS.cafeBloom,
+  },
+  {
+    time: '12:00',
+    title: 'เช็คเอาท์และทานอาหารกลางวัน',
+    icon: 'utensils',
+    description: 'เก็บของและเตรียมตัวเดินทางกลับ',
+    image: IMAGE_URLS.kruaKhaoYai,
+  },
+  {
+    time: '14:00',
+    title: 'เดินทางกลับกรุงเทพฯ',
+    icon: 'car',
+    description: 'ถึงกรุงเทพฯประมาณ 17:00 น.',
+    image: IMAGE_URLS.forest,
+  },
+];
 
 // Activities data for Slide 04
 export const ACTIVITIES: ActivityCard[] = [
@@ -231,10 +268,10 @@ export const SHOPPING_CATEGORIES: ShoppingCategory[] = [
 
 // Day 1 departure data for Slide 03
 export const DEPARTURE_INFO = {
-  meetingPoint: 'ปั๊ม ปตท. บางนา กม.3',
-  meetingTime: '06:00 น.',
+  meetingPoint: 'Tathamplaphow Restaurant',
+  meetingTime: '10:00 น.',
   estimatedArrival: 'ถึงเขาใหญ่ประมาณ 09:30 น.',
-  mapUrl: 'https://maps.google.com/?q=PTT+Bangna+KM3',
+  mapUrl: 'https://www.google.com/maps/place/Tathamplaphow+Restaurant/@14.6989259,101.4056615,14.64z/data=!4m6!3m5!1s0x311c2a4c054e63e3:0xbc52c6e80e1e27ae!8m2!3d14.708138!4d101.4049904!16s%2Fg%2F1hm6h6xbh?authuser=0&entry=ttu&g_ep=EgoyMDI1MTAwNC4wIKXMDSoASAFQAw%3D%3D',
 };
 
 export const BREAKFAST_SPOTS = [
