@@ -10,6 +10,9 @@ import Slide05 from '@/components/slides/Slide05';
 import Slide06 from '@/components/slides/Slide06';
 import Slide07 from '@/components/slides/Slide07';
 import Slide08 from '@/components/slides/Slide08';
+import Slide09 from '@/components/slides/Slide09';
+import Slide10 from '@/components/slides/Slide10';
+import Slide11 from '@/components/slides/Slide11';
 import { SlideProps } from '@/lib/types';
 
 // Create placeholder slide components for testing
@@ -22,9 +25,9 @@ const slides = [
   Slide06,
   Slide07,
   Slide08,
-  (props: SlideProps) => <PlaceholderSlide slideNumber={9} title="Day 2 Morning Options" backgroundColor="bg-sand" {...props} />,
-  (props: SlideProps) => <PlaceholderSlide slideNumber={10} title="Dress Code Theme" backgroundColor="bg-sage/20" {...props} />,
-  (props: SlideProps) => <PlaceholderSlide slideNumber={11} title="Design System Meta" backgroundColor="bg-sand" {...props} />,
+  Slide09,
+  Slide10,
+  Slide11,
   (props: SlideProps) => <PlaceholderSlide slideNumber={12} title="Final Checklist" backgroundColor="bg-sage/20" {...props} />,
 ];
 
