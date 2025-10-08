@@ -2,9 +2,9 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  MapPin, 
-  Phone, 
+import {
+  MapPin,
+  Phone,
   ExternalLink,
   Users,
   Clock,
@@ -55,7 +55,7 @@ export default function Slide05({ isActive }: SlideProps) {
           <p className="font-sarabun text-lg md:text-xl text-charcoal/80 mb-4">
             เลือกร้านที่ชอบสำหรับมื้อกลางวัน
           </p>
-          
+
           {/* Time and group info */}
           <div className="flex items-center justify-center gap-3 flex-wrap">
             <Badge variant="info" size="md" className="text-base px-4 py-2">
@@ -77,8 +77,8 @@ export default function Slide05({ isActive }: SlideProps) {
           animate={isActive ? 'visible' : 'hidden'}
         >
           {RESTAURANTS.map((restaurant) => (
-            <motion.div 
-              key={restaurant.name} 
+            <motion.div
+              key={restaurant.name}
               variants={itemVariants}
               className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
             >
@@ -176,7 +176,7 @@ export default function Slide05({ isActive }: SlideProps) {
               </p>
             </div>
           </div>
-          
+
           <ul className="font-sarabun text-base text-charcoal/80 space-y-3 ml-4">
             <li className="flex items-start gap-3">
               <span className="text-terracotta font-bold flex-shrink-0">1.</span>

@@ -37,11 +37,15 @@ khao-yai-presentation/
 │       ├── Badge.tsx
 │       ├── Timeline.tsx
 │       ├── Accordion.tsx
-│       └── ProgressDots.tsx
+│       ├── ProgressDots.tsx
+│       ├── Image.tsx
+│       └── ImageSkeleton.tsx
 ├── lib/
 │   ├── constants.ts       # Colors, trip info, content data
 │   ├── types.ts           # TypeScript interfaces
-│   └── utils.ts           # Utility functions
+│   ├── animations.ts      # Framer Motion animation variants
+│   └── hooks/
+│       └── useReducedMotion.ts  # Accessibility hook
 └── public/
     └── images/            # Static images
 ```
@@ -50,15 +54,29 @@ khao-yai-presentation/
 
 ### Prerequisites
 
-- Node.js 18+
-- npm
+- Node.js 18+ (recommended: Node.js 20+)
+- npm or yarn
 
 ### Installation
 
 ```bash
+# Clone the repository (if applicable)
+git clone <repository-url>
+cd khao-yai-presentation
+
 # Install dependencies
 npm install
 ```
+
+### Environment Variables
+
+Copy the `.env.example` file to `.env.local` and configure the variables:
+
+```bash
+cp .env.example .env.local
+```
+
+See the [Environment Variables](#environment-variables-1) section below for details.
 
 ### Development
 
@@ -69,6 +87,12 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) to view the presentation.
 
+The development server includes:
+- Hot module replacement (HMR)
+- Fast refresh for instant updates
+- TypeScript type checking
+- Tailwind CSS JIT compilation
+
 ### Build
 
 ```bash
@@ -77,6 +101,13 @@ npm run build
 
 # Start production server
 npm start
+```
+
+### Linting
+
+```bash
+# Run ESLint
+npm run lint
 ```
 
 ## Features
@@ -119,16 +150,176 @@ npm start
 11. **Design System** - Color and component showcase
 12. **Final Checklist** - Interactive checklist with QR codes
 
-## Image Sources
+## Environment Variables
 
-All images are sourced from Unsplash (free for personal use). See [IMAGE_SOURCES.md](IMAGE_SOURCES.md) for detailed attribution.
+This project uses environment variables for configuration. Create a `.env.local` file in the root directory:
+
+```env
+# Site Configuration
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+
+# Optional: Google Analytics (if needed)
+# NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
+
+# Optional: External API keys (if needed in future)
+# NEXT_PUBLIC_API_KEY=your_api_key_here
+```
+
+**Note**: The `.env.local` file is gitignored and should not be committed. Use `.env.example` as a template.
+
+## Image Sources and Usage Rights
+
+All images are sourced from **Unsplash** and **Pexels**, which provide free images for personal and commercial use under their respective licenses:
+
+### Unsplash License
+- Free to use for personal and commercial projects
+- No attribution required (but appreciated)
+- Cannot be sold or redistributed as-is
+- [Unsplash License Details](https://unsplash.com/license)
+
+### Pexels License
+- Free to use for personal and commercial projects
+- No attribution required (but appreciated)
+- Cannot be sold or redistributed as-is
+- [Pexels License Details](https://www.pexels.com/license/)
+
+### Image Attribution
+
+For detailed image sources and photographer credits, see [IMAGE_SOURCES.md](IMAGE_SOURCES.md).
+
+**Usage in this project**: All images are used for personal, non-commercial purposes (team trip planning) and comply with the respective licenses.
+
+## Deployment
+
+### Deploy to Vercel (Recommended)
+
+This project is optimized for deployment on [Vercel](https://vercel.com), the platform created by the makers of Next.js.
+
+#### Quick Deploy
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/khao-yai-presentation)
+
+#### Manual Deployment Steps
+
+1. **Install Vercel CLI** (optional):
+   ```bash
+   npm install -g vercel
+   ```
+
+2. **Connect your repository**:
+   - Push your code to GitHub, GitLab, or Bitbucket
+   - Go to [vercel.com](https://vercel.com) and sign in
+   - Click "Add New Project"
+   - Import your repository
+
+3. **Configure build settings**:
+   - **Framework Preset**: Next.js
+   - **Build Command**: `npm run build` (auto-detected)
+   - **Output Directory**: `.next` (auto-detected)
+   - **Install Command**: `npm install` (auto-detected)
+
+4. **Set environment variables**:
+   - Go to Project Settings → Environment Variables
+   - Add `NEXT_PUBLIC_SITE_URL` with your production URL
+   - Add any other variables from `.env.example`
+
+5. **Deploy**:
+   - Click "Deploy"
+   - Vercel will build and deploy your project
+   - You'll get a production URL (e.g., `https://khao-yai-presentation.vercel.app`)
+
+#### Automatic Deployments
+
+Once connected, Vercel automatically deploys:
+- **Production**: Every push to the `main` branch
+- **Preview**: Every push to other branches and pull requests
+
+### Deploy to Other Platforms
+
+#### Static Export (for any static hosting)
+
+If you want to deploy to platforms like Netlify, GitHub Pages, or AWS S3:
+
+1. **Update `next.config.ts`** to enable static export:
+   ```typescript
+   const nextConfig: NextConfig = {
+     output: 'export',
+     images: {
+       unoptimized: true, // Required for static export
+     },
+   };
+   ```
+
+2. **Build the static site**:
+   ```bash
+   npm run build
+   ```
+
+3. **Deploy the `out` directory** to your hosting platform.
+
+**Note**: Static export has limitations (no API routes, no server-side rendering). This project is designed to work with static export.
+
+### Custom Domain
+
+To use a custom domain with Vercel:
+
+1. Go to Project Settings → Domains
+2. Add your domain (e.g., `trip.yourdomain.com`)
+3. Follow DNS configuration instructions
+4. Vercel will automatically provision SSL certificates
+
+### Performance Optimization
+
+The production build includes:
+- ✅ Automatic code splitting
+- ✅ Image optimization (via Unsplash CDN)
+- ✅ CSS minification
+- ✅ JavaScript minification
+- ✅ Gzip/Brotli compression
+- ✅ Edge caching via Vercel CDN
 
 ## Documentation
 
+- **[QUICK_START.md](QUICK_START.md)** - Get started in 5 minutes ⚡
+- **[DEPLOYMENT.md](DEPLOYMENT.md)** - Complete deployment guide 🚀
 - [SETUP.md](SETUP.md) - Detailed setup instructions
-- [CLAUDE.md](CLAUDE.md) - Claude Code AI assistant guidance
 - [IMAGE_SOURCES.md](IMAGE_SOURCES.md) - Image attribution and sources
+- [ANIMATIONS.md](ANIMATIONS.md) - Animation system documentation
+- [ANIMATION_VERIFICATION.md](ANIMATION_VERIFICATION.md) - Animation testing guide
+- [CLAUDE.md](CLAUDE.md) - Claude Code AI assistant guidance
+
+## Troubleshooting
+
+### Common Issues
+
+**Issue**: Images not loading
+- **Solution**: Check that Unsplash URLs are accessible and not blocked by firewall/proxy
+
+**Issue**: Build fails with TypeScript errors
+- **Solution**: Run `npm run lint` to check for type errors, fix them before building
+
+**Issue**: Animations not working
+- **Solution**: Ensure Framer Motion is installed (`npm install framer-motion`)
+
+**Issue**: Fonts not loading
+- **Solution**: Check internet connection (Google Fonts are loaded from CDN)
+
+### Development Tips
+
+- Use `npm run dev` for hot reload during development
+- Check browser console for errors
+- Use React DevTools for component debugging
+- Test on multiple devices/browsers for responsive design
+
+## Contributing
+
+This is a private project for team trip planning. If you're part of the team and want to contribute:
+
+1. Create a feature branch
+2. Make your changes
+3. Test thoroughly
+4. Submit a pull request
 
 ## License
 
-Private project for team trip planning.
+Private project for team trip planning. All rights reserved.
