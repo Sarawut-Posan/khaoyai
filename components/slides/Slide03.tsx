@@ -2,12 +2,11 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Clock, MapPin, Map } from 'lucide-react';
-import { DEPARTURE_INFO, BREAKFAST_SPOTS } from '@/lib/constants';
+import { Clock, MapPin, Phone, Star, Info, UtensilsCrossed, ChefHat } from 'lucide-react';
+import { DEPARTURE_INFO, TATHAMPLAPHOW_INFO } from '@/lib/constants';
 import { SlideProps } from '@/lib/types';
-import Card from '@/components/ui/Card';
-import Badge from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
+import Badge from '@/components/ui/Badge';
 
 export default function Slide03({ isActive }: SlideProps) {
   // Animation variants
@@ -16,7 +15,7 @@ export default function Slide03({ isActive }: SlideProps) {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
+        staggerChildren: 0.1,
         delayChildren: 0.1,
       },
     },
@@ -28,141 +27,216 @@ export default function Slide03({ isActive }: SlideProps) {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
+        duration: 0.5,
       },
     },
   };
 
   return (
     <div className="relative w-full h-full overflow-auto bg-sand">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-8 md:py-12">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 py-6 md:py-10">
         {/* Header */}
         <motion.div
-          className="text-center mb-8 md:mb-12"
+          className="text-center mb-6 md:mb-10"
           initial={{ opacity: 0, y: -20 }}
           animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="font-kanit text-3xl md:text-4xl lg:text-5xl font-bold text-deepForest mb-3">
-            วันที่ 1: ออกเดินทาง
+          <h2 className="font-kanit text-3xl md:text-4xl lg:text-5xl font-bold text-deepForest mb-2">
+            จุดนัดพบ: {TATHAMPLAPHOW_INFO.name}
           </h2>
-          <p className="font-sarabun text-lg md:text-xl text-charcoal/80">
-            เช้าวันเสาร์ที่ 8 พฤศจิกายน 2568
+          <p className="font-sarabun text-base md:text-lg text-charcoal/70 mb-3">
+            {TATHAMPLAPHOW_INFO.description}
           </p>
+          <div className="flex flex-wrap justify-center gap-3 items-center">
+            <Badge variant="primary" size="lg" className="font-sarabun">
+              <Clock className="w-4 h-4 mr-1" />
+              นัดพบ {DEPARTURE_INFO.meetingTime}
+            </Badge>
+            <Badge variant="secondary" size="lg" className="font-sarabun">
+              <UtensilsCrossed className="w-4 h-4 mr-1" />
+              เปิด {TATHAMPLAPHOW_INFO.hours}
+            </Badge>
+          </div>
         </motion.div>
 
-        {/* Main content - Split layout */}
+        {/* Main content */}
         <motion.div
-          className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12"
           variants={containerVariants}
           initial="hidden"
           animate={isActive ? 'visible' : 'hidden'}
+          className="space-y-6 md:space-y-8"
         >
-          {/* Left side - Map preview and meeting point */}
-          <motion.div variants={itemVariants} className="space-y-6">
-            {/* Map preview */}
-            <div className="bg-white rounded-xl shadow-md overflow-hidden">
-              <div className="relative w-full h-64 md:h-80 bg-sage/20">
-                {/* Map placeholder - in production, this could be an actual map embed */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <MapPin className="w-16 h-16 text-terracotta mx-auto mb-4" />
-                    <p className="font-kanit text-xl font-semibold text-deepForest mb-2">
-                      จุดนัดพบ
-                    </p>
-                    <p className="font-sarabun text-lg text-charcoal">
-                      {DEPARTURE_INFO.meetingPoint}
-                    </p>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Map button */}
-              <div className="p-4 md:p-6">
-                <Button
-                  variant="primary"
-                  href={DEPARTURE_INFO.mapUrl}
-                  icon={<Map className="w-5 h-5" />}
-                  className="w-full"
-                >
-                  เปิดแผนที่
-                </Button>
-              </div>
-            </div>
-
-            {/* Estimated arrival badge */}
-            <motion.div
-              variants={itemVariants}
-              className="flex justify-center"
-            >
-              <Badge variant="info" size="md" className="text-base px-4 py-2">
-                {DEPARTURE_INFO.estimatedArrival}
-              </Badge>
-            </motion.div>
-          </motion.div>
-
-          {/* Right side - Schedule details */}
-          <motion.div variants={itemVariants} className="space-y-6">
-            {/* Meeting time */}
-            <div className="bg-white rounded-xl shadow-md p-6 md:p-8">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="bg-terracotta/10 p-3 rounded-full">
-                  <Clock className="w-8 h-8 text-terracotta" />
+          {/* Restaurant Info Card */}
+          <motion.div variants={itemVariants} className="bg-white rounded-2xl shadow-lg p-5 md:p-7">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
+              {/* Location */}
+              <div className="flex items-start gap-3">
+                <div className="bg-deepForest/10 p-3 rounded-full">
+                  <MapPin className="w-5 h-5 text-deepForest" />
                 </div>
                 <div>
-                  <h3 className="font-kanit text-2xl font-semibold text-deepForest">
-                    เวลานัดพบ
-                  </h3>
-                  <p className="font-sarabun text-3xl font-bold text-terracotta">
-                    {DEPARTURE_INFO.meetingTime}
+                  <h4 className="font-kanit text-base md:text-lg font-semibold text-deepForest mb-1">
+                    ที่อยู่
+                  </h4>
+                  <p className="font-sarabun text-sm md:text-base text-charcoal/80">
+                    {TATHAMPLAPHOW_INFO.address}
                   </p>
                 </div>
               </div>
-              <p className="font-sarabun text-base text-charcoal/80">
-                กรุณามาถึงให้ตรงเวลา เพื่อให้เราออกเดินทางพร้อมกัน
-              </p>
+
+              {/* Phone */}
+              <div className="flex items-start gap-3">
+                <div className="bg-terracotta/10 p-3 rounded-full">
+                  <Phone className="w-5 h-5 text-terracotta" />
+                </div>
+                <div>
+                  <h4 className="font-kanit text-base md:text-lg font-semibold text-deepForest mb-1">
+                    โทรศัพท์
+                  </h4>
+                  <a
+                    href={`tel:${TATHAMPLAPHOW_INFO.phone}`}
+                    className="font-sarabun text-sm md:text-base text-terracotta hover:underline"
+                  >
+                    {TATHAMPLAPHOW_INFO.phone}
+                  </a>
+                </div>
+              </div>
+
+              {/* Atmosphere */}
+              <div className="flex items-start gap-3">
+                <div className="bg-sage/30 p-3 rounded-full">
+                  <Info className="w-5 h-5 text-deepForest" />
+                </div>
+                <div>
+                  <h4 className="font-kanit text-base md:text-lg font-semibold text-deepForest mb-1">
+                    บรรยากาศ
+                  </h4>
+                  <p className="font-sarabun text-sm md:text-base text-charcoal/80">
+                    {TATHAMPLAPHOW_INFO.atmosphere.highlight}
+                  </p>
+                </div>
+              </div>
             </div>
 
-            {/* Breakfast spots */}
-            <div>
-              <h3 className="font-kanit text-xl md:text-2xl font-semibold text-deepForest mb-4">
-                ตัวเลือกอาหารเช้า
+            {/* Map Button */}
+            <div className="mt-5">
+              <Button
+                variant="primary"
+                href={TATHAMPLAPHOW_INFO.mapUrl}
+                icon={<MapPin className="w-5 h-5" />}
+                className="w-full"
+              >
+                เปิดแผนที่ Google Maps
+              </Button>
+            </div>
+          </motion.div>
+
+          {/* Menu Highlights */}
+          <motion.div variants={itemVariants}>
+            <div className="flex items-center gap-2 mb-4 md:mb-5">
+              <ChefHat className="w-6 h-6 md:w-7 md:h-7 text-terracotta" />
+              <h3 className="font-kanit text-2xl md:text-3xl font-bold text-deepForest">
+                เมนูแนะนำ
               </h3>
-              <div className="space-y-4">
-                {BREAKFAST_SPOTS.map((spot) => (
-                  <Card
-                    key={spot.id}
-                    title={spot.name}
-                    description={spot.description}
-                    image={spot.image}
-                    icon={<MapPin className="w-5 h-5" />}
-                    footer={
-                      <Button
-                        variant="secondary"
-                        size="sm"
-                        href={spot.mapUrl}
-                        icon={<Map className="w-4 h-4" />}
-                      >
-                        ดูแผนที่
-                      </Button>
-                    }
-                  />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+              {TATHAMPLAPHOW_INFO.menuHighlights.map((menu) => (
+                <motion.div
+                  key={menu.id}
+                  className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                  whileHover={{ y: -5 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {/* Menu Image */}
+                  <div className="relative h-40 md:h-48 overflow-hidden bg-sage/10">
+                    <img
+                      src={menu.image}
+                      alt={menu.name}
+                      className="w-full h-full object-cover"
+                    />
+                    {menu.isSignature && (
+                      <div className="absolute top-3 right-3">
+                        <Badge variant="primary" size="sm" className="font-sarabun">
+                          <Star className="w-3 h-3 mr-1" />
+                          เมนูเด็ด
+                        </Badge>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Menu Info */}
+                  <div className="p-4">
+                    <div className="flex justify-between items-start mb-2">
+                      <h4 className="font-kanit text-lg md:text-xl font-semibold text-deepForest">
+                        {menu.name}
+                      </h4>
+                      <span className="font-kanit text-lg md:text-xl font-bold text-terracotta ml-2">
+                        {menu.price}฿
+                      </span>
+                    </div>
+                    <p className="font-sarabun text-sm md:text-base text-charcoal/70 line-clamp-2">
+                      {menu.description}
+                    </p>
+                    {'weight' in menu && menu.weight && (
+                      <p className="font-sarabun text-xs md:text-sm text-charcoal/60 mt-1">
+                        ขนาด: {menu.weight}
+                      </p>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Specialties & Tips */}
+          <motion.div variants={itemVariants} className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
+            {/* Specialties */}
+            <div className="bg-deepForest/5 rounded-xl p-5 md:p-6">
+              <h4 className="font-kanit text-lg md:text-xl font-bold text-deepForest mb-3 md:mb-4">
+                จุดเด่นของร้าน
+              </h4>
+              <ul className="space-y-2">
+                {TATHAMPLAPHOW_INFO.specialties.map((specialty, index) => (
+                  <li
+                    key={index}
+                    className="font-sarabun text-sm md:text-base text-charcoal/80 flex items-start"
+                  >
+                    <Star className="w-4 h-4 text-terracotta mr-2 mt-0.5 flex-shrink-0" />
+                    <span>{specialty}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Tips */}
+            <div className="bg-terracotta/10 rounded-xl p-5 md:p-6">
+              <h4 className="font-kanit text-lg md:text-xl font-bold text-deepForest mb-3 md:mb-4">
+                เคล็ดลับสำหรับกลุ่ม
+              </h4>
+              <div className="space-y-2">
+                {TATHAMPLAPHOW_INFO.tips.map((tip, index) => (
+                  <p
+                    key={index}
+                    className="font-sarabun text-sm md:text-base text-charcoal/80"
+                  >
+                    {tip}
+                  </p>
                 ))}
               </div>
             </div>
           </motion.div>
-        </motion.div>
 
-        {/* Additional info */}
-        <motion.div
-          className="mt-8 md:mt-12 text-center"
-          initial={{ opacity: 0 }}
-          animate={isActive ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ delay: 0.8, duration: 0.6 }}
-        >
-          <p className="font-sarabun text-sm md:text-base text-charcoal/60">
-            💡 แนะนำให้เติมน้ำมันเต็มถังก่อนออกเดินทาง
-          </p>
+          {/* Bottom Note */}
+          <motion.div
+            variants={itemVariants}
+            className="text-center pt-2"
+          >
+            <p className="font-sarabun text-sm md:text-base text-charcoal/60">
+              📍 กรุณามาถึงให้ตรงเวลา {DEPARTURE_INFO.meetingTime} เพื่อเราจะได้ออกเดินทางพร้อมกัน
+            </p>
+          </motion.div>
         </motion.div>
       </div>
     </div>

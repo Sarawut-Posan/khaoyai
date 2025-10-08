@@ -11,7 +11,7 @@ import Slide07 from '@/components/slides/Slide07';
 import Slide08 from '@/components/slides/Slide08';
 import Slide09 from '@/components/slides/Slide09';
 import Slide10 from '@/components/slides/Slide10';
-import Slide11 from '@/components/slides/Slide11';
+// import Slide11 from '@/components/slides/Slide11'; // Hidden: Design system meta slide
 import Slide12 from '@/components/slides/Slide12';
 
 const slides = [
@@ -25,7 +25,7 @@ const slides = [
   Slide08,
   Slide09,
   Slide10,
-  Slide11,
+  // Slide11, // Hidden: Design system meta slide
   Slide12,
 ];
 

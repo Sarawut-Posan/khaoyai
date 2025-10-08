@@ -20,17 +20,21 @@ export const TRIP_INFO = {
   teamSize: 14,
 } as const;
 
-// External image URLs (Unsplash - free for personal use)
+// External image URLs
 export const IMAGE_URLS = {
   // Hero and backgrounds
   hero: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80', // Mountain landscape
 
-  // Activities
+  // Activities - Thongsomboon Club
+  thongsomboonMain: 'https://ik.imagekit.io/tvlk/xpe-asset/AyJ40ZAo1DOyPyKLZ9c3RGQHTP2oT4ZXW+QmPVVkFQiXFSv42UaHGzSmaSzQ8DO5QIbWPZuF+VkYVRk6gh-Vg4ECbfuQRQ4pHjWJ5Rmbtkk=/7749363751758/Thongsomboon-Club-Ticket-884d86f3-59d7-44bf-9a7d-053321937325.jpeg',
   atv: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80', // ATV riding
   zipline: 'https://images.unsplash.com/photo-1527004013197-933c4bb611b3?w=800&q=80', // Zipline adventure
+  luge: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=800&q=80', // Luge track
+  goKart: 'https://images.unsplash.com/photo-1566577134770-3d85bb3a9cc4?w=800&q=80', // Go Kart racing
   paintball: 'https://images.unsplash.com/photo-1511886929837-354d827aae26?w=800&q=80', // Paintball action
   archery: 'https://images.unsplash.com/photo-1574607383476-f517f260d30b?w=800&q=80', // Archery target
   horseRiding: 'https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?w=800&q=80', // Horse riding
+  rafting: 'https://images.unsplash.com/photo-1501555088652-021faa106b9b?w=800&q=80', // Water rafting
   buggy: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=800&q=80', // Off-road buggy
 
   // Restaurants and cafes
@@ -158,49 +162,109 @@ export const TIMELINE_DATA: TimelineItem[] = [
   },
 ];
 
-// Activities data for Slide 04
+// Activities data for Slide 04 - Thongsomboon Club
 export const ACTIVITIES: ActivityCard[] = [
   {
     id: 'atv',
     title: 'ATV ขับรถ 4 ล้อ',
-    description: 'ขับรถ ATV ผ่านเส้นทางธรรมชาติ สนุกและท้าทาย',
+    description: 'ลุยเส้นทาง 1,500 เมตร เหมาะกับทุกวัย',
     image: IMAGE_URLS.atv,
     icon: 'bike',
   },
   {
     id: 'zipline',
-    title: 'Zipline บินผ่านป่า',
-    description: 'บินชมวิวป่าเขาใหญ่จากมุมสูง ตื่นเต้นเร้าใจ',
+    title: 'Flying Fox (Zipline)',
+    description: 'บินผ่านป่า ชมวิวสวยงามจากมุมสูง',
     image: IMAGE_URLS.zipline,
     icon: 'zap',
   },
   {
-    id: 'paintball',
-    title: 'Paintball ยิงสี',
-    description: 'เกมยิงสีแบบทีม สนุกและสร้างความสามัคคี',
-    image: IMAGE_URLS.paintball,
-    icon: 'target',
+    id: 'luge',
+    title: 'Luge สายรุ้ง',
+    description: 'ลูจสุดมันส์กับเส้นทางสายรุ้ง',
+    image: IMAGE_URLS.luge,
+    icon: 'zap',
   },
   {
-    id: 'archery',
-    title: 'ยิงธนู',
-    description: 'ฝึกสมาธิและความแม่นยำด้วยการยิงธนู',
-    image: IMAGE_URLS.archery,
-    icon: 'crosshair',
+    id: 'gokart',
+    title: 'Go Kart แข่งรถ',
+    description: 'แข่งรถโกคาร์ทสนุกระทึกใจ',
+    image: IMAGE_URLS.goKart,
+    icon: 'truck',
+  },
+  {
+    id: 'rafting',
+    title: 'ล่องแก่ง',
+    description: 'ล่องแก่งสนุกสนาน เย็นฉ่ำ',
+    image: IMAGE_URLS.rafting,
+    icon: 'zap',
   },
   {
     id: 'horseriding',
     title: 'ขี่ม้า',
-    description: 'ขี่ม้าชมธรรมชาติรอบ ๆ สนาม',
+    description: 'ขี่ม้าชมธรรมชาติรอบสวน (999฿)',
     image: IMAGE_URLS.horseRiding,
     icon: 'heart',
   },
   {
-    id: 'buggy',
-    title: 'Buggy Car',
-    description: 'ขับรถบั๊กกี้ผ่านเส้นทางออฟโรด',
-    image: IMAGE_URLS.buggy,
-    icon: 'truck',
+    id: 'archery',
+    title: 'ยิงธนู',
+    description: 'ฝึกสมาธิและความแม่นยำ',
+    image: IMAGE_URLS.archery,
+    icon: 'crosshair',
+  },
+  {
+    id: 'paintball',
+    title: 'Paintball ยิงสี',
+    description: 'เกมยิงสีแบบทีม สร้างความสามัคคี',
+    image: IMAGE_URLS.paintball,
+    icon: 'target',
+  },
+];
+
+// Thongsomboon Club pricing packages
+export const THONGSOMBOON_PACKAGES = [
+  {
+    id: 'basic',
+    price: '399',
+    name: 'แพ็คเกจ Basic',
+    duration: '3 ชั่วโมง',
+    activities: '13 กิจกรรม',
+    highlight: 'เล่นไม่จำกัดรอบ',
+    includes: ['น้ำอัดลม 1 แก้ว'],
+  },
+  {
+    id: 'premium',
+    price: '499',
+    name: 'แพ็คเกจ Premium',
+    duration: '3 ชั่วโมง',
+    activities: '13 กิจกรรม',
+    highlight: 'เล่นไม่จำกัดรอบ + ATV',
+    includes: ['บัตร ATV 1 ใบ', 'น้ำอัดลม 1 แก้ว', 'ไอศกรีม 1 โคน'],
+    recommended: true,
+  },
+  {
+    id: 'vip',
+    price: '999',
+    name: 'แพ็คเกจ VIP',
+    duration: '4 ชั่วโมง',
+    activities: '17 กิจกรรม',
+    highlight: 'ครบทุกกิจกรรม + ขี่ม้า',
+    includes: ['ขี่ม้า 1 รอบ', 'น้ำอัดลม 1 แก้ว', 'ไอศกรีม 1 โคน', 'Relax Zone'],
+  },
+];
+
+// Promotions
+export const THONGSOMBOON_PROMOTIONS = [
+  {
+    icon: 'baby',
+    title: 'เด็กเล็กเข้าฟรี',
+    description: 'ส่วนสูงต่ำกว่า 100 ซม.',
+  },
+  {
+    icon: 'user',
+    title: 'ผู้สูงอายุเข้าฟรี',
+    description: 'อายุ 70 ปีขึ้นไป (แสดงบัตรประชาชน)',
   },
 ];
 
@@ -272,6 +336,80 @@ export const DEPARTURE_INFO = {
   meetingTime: '10:00 น.',
   estimatedArrival: 'ถึงเขาใหญ่ประมาณ 09:30 น.',
   mapUrl: 'https://www.google.com/maps/place/Tathamplaphow+Restaurant/@14.6989259,101.4056615,14.64z/data=!4m6!3m5!1s0x311c2a4c054e63e3:0xbc52c6e80e1e27ae!8m2!3d14.708138!4d101.4049904!16s%2Fg%2F1hm6h6xbh?authuser=0&entry=ttu&g_ep=EgoyMDI1MTAwNC4wIKXMDSoASAFQAw%3D%3D',
+};
+
+// Tathamplaphow Restaurant (ตาทำปลาเผา) detailed information
+export const TATHAMPLAPHOW_INFO = {
+  name: 'ตาทำปลาเผา',
+  englishName: 'Tathamplaphow Restaurant',
+  description: 'ร้านอาหารไทย จีน อีสาน ต้นตำรับปลาช่อนเผาสูตรโบราณไม่ทาเกลือ',
+  phone: '081-876-4232',
+  address: '3 ถนนปากช่อง-สัตหีบ ต.ปากช่อง อ.ปากช่อง นครราชสีมา 30130',
+  hours: '10:00 - 22:00 น.',
+  mapUrl: 'https://www.google.com/maps/place/Tathamplaphow+Restaurant/@14.6989259,101.4056615,14.64z/data=!4m6!3m5!1s0x311c2a4c054e63e3:0xbc52c6e80e1e27ae!8m2!3d14.708138!4d101.4049904!16s%2Fg%2F1hm6h6xbh',
+  atmosphere: {
+    aircon: true,
+    spacious: true,
+    parking: 'ลานจอดรถกว้างขวาง',
+    highlight: 'โซนห้องแอร์ เพดานสูง โล่งโปร่งสบาย ใกล้ชิดกับธรรมชาติ',
+  },
+  menuHighlights: [
+    {
+      id: 'grilled-fish',
+      name: 'ปลาช่อนเผา',
+      description: 'ต้นตำรับเผาสูตรโบราณไม่ทาเกลือ ใช้เปลือกมะพร้าวและฟางเผา',
+      price: 250,
+      weight: '8 ตาถึง 1 กก.',
+      image: 'https://images.unsplash.com/photo-1580959375944-0b9e9d447047?w=800&q=80', // Grilled fish
+      isSignature: true,
+    },
+    {
+      id: 'grilled-chicken',
+      name: 'ไก่ย่าง',
+      description: 'ไก่ย่างสไตล์อีสาน หอมเครื่องเทศ',
+      price: 190,
+      image: 'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=800&q=80', // Grilled chicken
+    },
+    {
+      id: 'isaan-sausage',
+      name: 'ไส้กรอกอีสาน',
+      description: 'ไส้กรอกอีสานรสจัดจ้าน เด็ดมาก',
+      price: 120,
+      image: 'https://images.unsplash.com/photo-1607330289275-8a430e8a4b1f?w=800&q=80', // Thai sausage
+    },
+    {
+      id: 'curry-hoi-khom',
+      name: 'แกงคั่วหอยขม',
+      description: 'แกงคั่วรสเข้มข้น กลมกล่อม',
+      price: 120,
+      image: 'https://images.unsplash.com/photo-1604908815879-f9d71e0e9b0c?w=800&q=80', // Thai curry
+    },
+    {
+      id: 'yam-pla-kapong',
+      name: 'ยำปลากะพงกรอบ',
+      description: 'ยำปลากรอบ รสจัดจ้าน เปรี้ยว เผ็ด อร่อย',
+      price: 300,
+      image: 'https://images.unsplash.com/photo-1562565652-a0d8f0c59eb4?w=800&q=80', // Thai salad
+    },
+    {
+      id: 'fried-cabbage',
+      name: 'กะหล่ำปลีผัดน้ำปลา',
+      description: 'ผักกะหล่ำปลีผัดสไตล์ไทย',
+      price: 90,
+      image: 'https://images.unsplash.com/photo-1604999565976-8913ad2ddb7c?w=800&q=80', // Stir-fried vegetables
+    },
+  ],
+  specialties: [
+    'ปลาช่อนเผาต้นตำรับสูตรโบราณ',
+    'อาหารไทย จีน อีสาน รสชาติต้นตำรับ',
+    'วัตถุดิบสดใหม่ทุกวัน',
+    'จานอาหารขนาดใหญ่ เหมาะกับกลุ่ม',
+  ],
+  tips: [
+    '💡 แนะนำจองล่วงหน้าสำหรับกลุ่มใหญ่',
+    '🍽️ จานอาหารขนาดใหญ่ เหมาะสำหรับแชร์',
+    '⏰ ร้านเปิด 10:00 น. พอดีกับเวลานัดพบ',
+  ],
 };
 
 export const BREAKFAST_SPOTS = [
