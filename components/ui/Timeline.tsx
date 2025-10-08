@@ -58,15 +58,10 @@ export default function Timeline({
   // Animation variants
   const itemVariants = {
     hidden: { opacity: 0, x: -20 },
-    visible: (index: number) => ({
+    visible: {
       opacity: 1,
       x: 0,
-      transition: {
-        delay: index * 0.1,
-        duration: 0.5,
-        ease: 'easeOut',
-      },
-    }),
+    },
   };
 
   const imageVariants = {
@@ -74,10 +69,6 @@ export default function Timeline({
     visible: {
       opacity: 1,
       scale: 1,
-      transition: {
-        duration: 0.4,
-        ease: 'easeOut',
-      },
     },
   };
 
@@ -90,11 +81,11 @@ export default function Timeline({
             return (
               <motion.div
                 key={index}
-                custom={index}
                 variants={itemVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: '-50px' }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
                 className="flex items-center gap-4 my-8"
               >
                 <div className="flex items-center justify-center w-16 h-16 rounded-full bg-terracotta text-white shadow-lg">
@@ -116,11 +107,11 @@ export default function Timeline({
           return (
             <motion.div
               key={index}
-              custom={index}
               variants={itemVariants}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: '-50px' }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
               className="flex gap-4 group"
             >
               {/* Icon and line */}
@@ -157,6 +148,7 @@ export default function Timeline({
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
+                    transition={{ duration: 0.4 }}
                     className="relative w-full h-40 rounded-lg overflow-hidden shadow-md"
                   >
                     <Image
@@ -187,11 +179,11 @@ export default function Timeline({
               return (
                 <motion.div
                   key={index}
-                  custom={index}
                   variants={itemVariants}
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}
+                  transition={{ delay: index * 0.1, duration: 0.5 }}
                   className="flex flex-col items-center justify-center min-w-[200px] bg-terracotta/10 rounded-xl p-6 border-2 border-terracotta"
                 >
                   <div className="flex items-center justify-center w-16 h-16 rounded-full bg-terracotta text-white shadow-lg mb-3">
@@ -211,11 +203,11 @@ export default function Timeline({
             return (
               <motion.div
                 key={index}
-                custom={index}
                 variants={itemVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
                 whileHover={{ y: -8 }}
                 className="flex flex-col items-center min-w-[240px] max-w-[280px] bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group"
               >
