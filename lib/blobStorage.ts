@@ -145,3 +145,68 @@ export function extractPathnameFromBlobUrl(url: string): string | null {
     return null;
   }
 }
+
+/**
+ * อัพโหลด JSON object ไปยัง Blob Storage
+ */
+export async function uploadJsonToBlob<T>(
+  data: T,
+  pathname: string
+): Promise<PutBlobResult> {
+  try {
+    const jsonString = JSON.stringify(data, null, 2);
+    const blob = new Blob([jsonString], { type: 'application/json' });
+
+    const result = await put(pathname, blob, {
+      access: 'public',
+      addRandomSuffix: false,
+    });
+
+    return result;
+  } catch (error) {
+    console.error('JSON upload error:', error);
+    throw new Error('ไม่สามารถอัพโหลด JSON ได้');
+  }
+}
+
+/**
+ * ดาวน์โหลดและ parse JSON จาก Blob Storage
+ */
+export async function downloadJsonFromBlob<T>(url: string): Promise<T> {
+  try {
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data as T;
+  } catch (error) {
+    console.error('JSON download error:', error);
+    throw new Error('ไม่สามารถดาวน์โหลด JSON ได้');
+  }
+}
+
+/**
+ * ดึง JSON file จาก Blob Storage โดยใช้ pathname
+ */
+export async function getJsonFromBlobByPathname<T>(pathname: string): Promise<T | null> {
+  try {
+    const { blobs } = await list({ prefix: pathname });
+
+    if (blobs.length === 0) {
+      return null;
+    }
+
+    const blob = blobs.find(b => b.pathname === pathname);
+    if (!blob) {
+      return null;
+    }
+
+    return await downloadJsonFromBlob<T>(blob.url);
+  } catch (error) {
+    console.error('Get JSON error:', error);
+    return null;
+  }
+}

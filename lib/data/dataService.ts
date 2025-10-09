@@ -1,42 +1,49 @@
 import { ContentData } from '@/lib/types';
 import * as constants from '@/lib/constants';
-import { promises as fs } from 'fs';
-import path from 'path';
+import {
+  uploadJsonToBlob,
+  getJsonFromBlobByPathname
+} from '@/lib/blobStorage';
 
-const DATA_FILE_PATH = path.join(process.cwd(), 'data', 'content.json');
+const CONTENT_JSON_PATHNAME = 'data/content.json';
 
 /**
- * Read content data from JSON file
+ * Read content data from Blob Storage
  * Falls back to constants if file doesn't exist
  */
 export async function readContentData(): Promise<ContentData> {
   try {
-    const fileContent = await fs.readFile(DATA_FILE_PATH, 'utf-8');
-    return JSON.parse(fileContent);
-  } catch {
-    // If file doesn't exist, return data from constants
-    console.log('content.json not found, using constants as fallback');
+    // Try to read from Blob Storage
+    const data = await getJsonFromBlobByPathname<ContentData>(CONTENT_JSON_PATHNAME);
+
+    if (data) {
+      return data;
+    }
+
+    // If file doesn't exist in Blob, return data from constants
+    console.log('content.json not found in Blob Storage, using constants as fallback');
+    return getDataFromConstants();
+  } catch (error) {
+    console.error('Error reading content from Blob:', error);
+    // Fallback to constants on error
     return getDataFromConstants();
   }
 }
 
 /**
- * Write content data to JSON file
+ * Write content data to Blob Storage
  */
 export async function writeContentData(data: ContentData): Promise<void> {
   // Update lastModified timestamp
   data.lastModified = new Date().toISOString();
-  
-  // Ensure data directory exists
-  const dataDir = path.dirname(DATA_FILE_PATH);
+
   try {
-    await fs.access(dataDir);
-  } catch {
-    await fs.mkdir(dataDir, { recursive: true });
+    // Upload to Blob Storage
+    await uploadJsonToBlob(data, CONTENT_JSON_PATHNAME);
+  } catch (error) {
+    console.error('Error writing content to Blob:', error);
+    throw new Error('ไม่สามารถบันทึกข้อมูลได้');
   }
-  
-  // Write to file with pretty formatting
-  await fs.writeFile(DATA_FILE_PATH, JSON.stringify(data, null, 2), 'utf-8');
 }
 
 /**
