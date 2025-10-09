@@ -3,10 +3,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Timeline from '@/components/ui/Timeline';
-import { TIMELINE_DATA } from '@/lib/constants';
+import { useTimeline } from '@/lib/hooks/useContentData';
 import { SlideProps } from '@/lib/types';
 
 export default function Slide02({ isActive }: SlideProps) {
+  // Get data with fallback to constants
+  const timeline = useTimeline();
+
   // Animation variants for staggered fade-in
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -57,7 +60,7 @@ export default function Slide02({ isActive }: SlideProps) {
           {/* Desktop: Horizontal Timeline */}
           <div className="hidden md:block w-full max-w-6xl">
             <Timeline 
-              items={TIMELINE_DATA} 
+              items={timeline} 
               orientation="horizontal"
               className="px-4"
             />
@@ -66,7 +69,7 @@ export default function Slide02({ isActive }: SlideProps) {
           {/* Mobile: Vertical Timeline */}
           <div className="block md:hidden w-full max-w-2xl">
             <Timeline 
-              items={TIMELINE_DATA} 
+              items={timeline} 
               orientation="vertical"
             />
           </div>

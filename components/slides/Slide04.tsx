@@ -19,7 +19,7 @@ import {
   Check,
   Star
 } from 'lucide-react';
-import { ACTIVITIES, THONGSOMBOON_PACKAGES, THONGSOMBOON_PROMOTIONS } from '@/lib/constants';
+import { useContentData } from '@/lib/hooks/useContentData';
 import { SlideProps } from '@/lib/types';
 import Card from '@/components/ui/Card';
 import Badge from '@/components/ui/Badge';
@@ -35,6 +35,12 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 export default function Slide04({ isActive }: SlideProps) {
+  // Get data with fallback to constants
+  const contentData = useContentData();
+  const activities = contentData.activities;
+  const packages = contentData.thongsomboonPackages;
+  const promotions = contentData.thongsomboonPromotions;
+
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -95,7 +101,7 @@ export default function Slide04({ isActive }: SlideProps) {
           initial="hidden"
           animate={isActive ? 'visible' : 'hidden'}
         >
-          {ACTIVITIES.map((activity) => (
+          {activities.map((activity) => (
             <motion.div key={activity.id} variants={itemVariants}>
               <Card
                 title={activity.title}
@@ -122,7 +128,7 @@ export default function Slide04({ isActive }: SlideProps) {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-            {THONGSOMBOON_PACKAGES.map((pkg) => (
+            {packages.map((pkg) => (
               <motion.div
                 key={pkg.id}
                 className={`relative bg-white rounded-xl p-6 border-2 transition-all duration-300 ${
@@ -161,7 +167,7 @@ export default function Slide04({ isActive }: SlideProps) {
                 </div>
 
                 <ul className="space-y-2">
-                  {pkg.includes.map((item, idx) => (
+                  {pkg.includes.map((item: string, idx: number) => (
                     <li key={idx} className="flex items-start gap-2 font-sarabun text-sm text-charcoal/80">
                       <Check className="w-4 h-4 text-sage flex-shrink-0 mt-0.5" />
                       <span>{item}</span>
@@ -174,7 +180,7 @@ export default function Slide04({ isActive }: SlideProps) {
 
           {/* Promotions */}
           <div className="flex flex-wrap items-center justify-center gap-4">
-            {THONGSOMBOON_PROMOTIONS.map((promo, idx) => (
+            {promotions.map((promo, idx) => (
               <motion.div
                 key={idx}
                 className="bg-terracotta/10 border-2 border-terracotta/30 rounded-lg px-4 py-3 flex items-center gap-3"

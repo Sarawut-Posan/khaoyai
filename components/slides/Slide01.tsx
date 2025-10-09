@@ -3,10 +3,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Users } from 'lucide-react';
-import { TRIP_INFO, IMAGE_URLS } from '@/lib/constants';
+import { IMAGE_URLS } from '@/lib/constants';
+import { useTripInfo, useImageUrls } from '@/lib/hooks/useContentData';
 import { SlideProps } from '@/lib/types';
 
 export default function Slide01({ isActive }: SlideProps) {
+  // Get data with fallback to constants
+  const tripInfo = useTripInfo();
+  const imageUrls = useImageUrls();
+
   // Animation variants for staggered fade-in
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -38,7 +43,7 @@ export default function Slide01({ isActive }: SlideProps) {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: `url('${IMAGE_URLS.hero}')`,
+            backgroundImage: `url('${imageUrls.hero || IMAGE_URLS.hero}')`,
             backgroundColor: '#2F6B3C', // Fallback color
           }}
         />
@@ -64,7 +69,7 @@ export default function Slide01({ isActive }: SlideProps) {
           className="font-kanit font-bold text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-4 md:mb-6 leading-tight"
           variants={itemVariants}
         >
-          {TRIP_INFO.title}
+          {tripInfo.title}
         </motion.h1>
 
         {/* Subtitle */}
@@ -72,7 +77,7 @@ export default function Slide01({ isActive }: SlideProps) {
           className="font-kanit font-semibold text-sand text-2xl sm:text-3xl md:text-4xl mb-6 md:mb-8"
           variants={itemVariants}
         >
-          {TRIP_INFO.subtitle}
+          {tripInfo.subtitle}
         </motion.p>
 
         {/* Dates and location */}
@@ -80,8 +85,8 @@ export default function Slide01({ isActive }: SlideProps) {
           className="font-sarabun text-white/90 text-lg sm:text-xl md:text-2xl mb-8 md:mb-10 space-y-2"
           variants={itemVariants}
         >
-          <p>{TRIP_INFO.dates}</p>
-          <p className="text-terracotta font-medium">{TRIP_INFO.location}</p>
+          <p>{tripInfo.dates}</p>
+          <p className="text-terracotta font-medium">{tripInfo.location}</p>
         </motion.div>
 
         {/* Team icon with count */}
@@ -91,7 +96,7 @@ export default function Slide01({ isActive }: SlideProps) {
         >
           <Users className="w-6 h-6 md:w-8 md:h-8 text-terracotta" />
           <span className="font-sarabun text-white text-lg md:text-xl font-medium">
-            {TRIP_INFO.teamSize} คน
+            {tripInfo.teamSize} คน
           </span>
         </motion.div>
       </motion.div>
