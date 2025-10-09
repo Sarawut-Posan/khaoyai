@@ -8,9 +8,9 @@ import { put, del, list, type PutBlobResult } from '@vercel/blob';
 // ข้อกำหนดสำหรับไฟล์อัพโหลด
 export const UPLOAD_CONFIG = {
   maxFileSize: 5 * 1024 * 1024, // 5MB
-  allowedTypes: ['image/jpeg', 'image/png', 'image/webp'],
-  allowedExtensions: ['.jpg', '.jpeg', '.png', '.webp'],
-} as const;
+  allowedTypes: ['image/jpeg', 'image/png', 'image/webp'] as string[],
+  allowedExtensions: ['.jpg', '.jpeg', '.png', '.webp'] as string[],
+};
 
 /**
  * ตรวจสอบไฟล์ก่อนอัพโหลด

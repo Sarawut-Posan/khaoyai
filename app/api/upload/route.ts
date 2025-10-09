@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
       pathname: blob.pathname,
       downloadUrl: blob.downloadUrl,
       contentType: blob.contentType,
-      size: blob.size,
+      size: file.size, // ใช้ size จาก File object
     });
 
   } catch (error) {
