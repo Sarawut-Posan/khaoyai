@@ -76,7 +76,8 @@ export default function ImageUpload({
         throw new Error(data.error || 'อัพโหลดไม่สำเร็จ');
       }
 
-      onUpload(data.path);
+      // ใช้ URL จาก Vercel Blob Storage
+      onUpload(data.url);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'เกิดข้อผิดพลาดในการอัพโหลด');
       setPreview(currentImage || null);
