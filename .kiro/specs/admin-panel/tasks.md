@@ -28,7 +28,7 @@
   - Add image selection UI for hero and other images
   - _Requirements: 3.1, 3.2, 3.3, 3.5, 3.6_
 
-- [ ] 5. Create timeline management interface
+- [x] 5. Create timeline management interface
   - Build timeline list view showing all items
   - Create add/edit form for timeline items (time, title, description, icon, image)
   - Implement delete functionality with confirmation
