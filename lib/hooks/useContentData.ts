@@ -3,16 +3,17 @@
  * Provides easy access to content with fallback to constants
  */
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ContentData } from '@/lib/types';
+import { getContentData } from '@/lib/data/clientDataService';
 import * as constants from '@/lib/constants';
 
 /**
  * Hook to get content data with fallback to constants
- * For now, we'll use constants directly until the API is ready
+ * Loads data from API on mount
  */
 export function useContentData() {
-  const [data] = useState<ContentData>(() => ({
+  const [data, setData] = useState<ContentData>(() => ({
     version: '1.0',
     lastModified: new Date().toISOString(),
     tripInfo: constants.TRIP_INFO,
@@ -34,6 +35,10 @@ export function useContentData() {
     breakfastSpots: constants.BREAKFAST_SPOTS,
     externalLinks: constants.EXTERNAL_LINKS,
   }));
+
+  useEffect(() => {
+    getContentData().then(setData);
+  }, []);
 
   return data;
 }
