@@ -2,19 +2,28 @@
 
 This directory contains images used throughout the Khao Yai Presentation.
 
-## Required Images
+## Image Management
 
-### Slide 01 - Hero
-- `hero-bg.jpg` - Hero background image (recommended: nature/forest scene from Khao Yai)
-  - Recommended size: 1920x1080px or larger
-  - The component includes a fallback deepForest color (#2F6B3C) if image is not available
+Images can be uploaded and managed through the Admin Panel at `/admin/images`.
 
-### Future Slides
-Additional images will be needed for:
-- Activity cards (Slide 04)
-- Restaurant/cafe photos (Slide 05)
-- Villa photos (Slide 07)
-- Dress code lookbook (Slide 10)
+### Upload Specifications
+- **Allowed formats**: JPG, PNG, WebP
+- **Maximum file size**: 5MB
+- **Naming**: Files are automatically renamed with timestamp prefix to avoid conflicts
+
+### Image Categories
+
+#### Main Images
+- Hero image (hero)
+- Villa images (villa, villaPool, villaInterior)
+
+#### Activity Images
+- Thongsomboon Club (thongsomboonMain)
+- Activities (atv, zipline, luge, goKart, paintball, archery, horseRiding, rafting, buggy)
+
+#### Restaurant Images
+- Restaurants (midwinter, chocolate, kruaKhaoYai)
 
 ## Note
 The presentation will work without images, using fallback colors and graceful degradation.
+Uploaded images are stored in this directory and referenced in `data/content.json`.

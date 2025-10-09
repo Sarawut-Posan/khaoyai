@@ -21,7 +21,7 @@
   - Add success/error message display
   - _Requirements: 2.1, 2.2, 2.3, 2.4_
 
-- [ ] 4. Build image upload system
+- [x] 4. Build image upload system
   - Create image upload API route to save files to `/public/images`
   - Implement client-side image validation (type, size)
   - Build reusable ImageUpload component with preview
