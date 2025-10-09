@@ -7,7 +7,7 @@
   - Update presentation components to read from data service with fallback to constants
   - _Requirements: 7.1, 7.2, 7.4_
 
-- [ ] 2. Create admin layout and navigation
+- [x] 2. Create admin layout and navigation
   - Create admin layout component with simple navigation
   - Build dashboard page showing all editable sections as cards
   - Add routing structure for admin pages
