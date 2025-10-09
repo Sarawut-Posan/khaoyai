@@ -54,7 +54,7 @@ export default function ImagesPage() {
       } else {
         setError('โหลดข้อมูลไม่สำเร็จ');
       }
-    } catch (err) {
+    } catch {
       setError('เกิดข้อผิดพลาดในการโหลดข้อมูล');
     } finally {
       setLoading(false);
@@ -106,8 +106,8 @@ export default function ImagesPage() {
 
       setSuccess(true);
       setTimeout(() => setSuccess(false), 3000);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'เกิดข้อผิดพลาดในการบันทึก');
+    } catch (error) {
+      setError(error instanceof Error ? error.message : 'เกิดข้อผิดพลาดในการบันทึก');
     } finally {
       setSaving(false);
     }

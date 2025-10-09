@@ -1,8 +1,16 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Save, AlertCircle, CheckCircle } from 'lucide-react';
+import { Info } from 'lucide-react';
 import { TripInfo } from '@/lib/types';
+import {
+  MessageDisplay,
+  FormField,
+  SaveButton,
+  LoadingSpinner,
+  PageHeader,
+  Card,
+} from '@/components/admin';
 
 export default function TripInfoPage() {
   const [tripInfo, setTripInfo] = useState<TripInfo>({
@@ -111,149 +119,94 @@ export default function TripInfoPage() {
   };
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-[400px]">
-        <div className="text-charcoal/70">กำลังโหลด...</div>
-      </div>
-    );
+    return <LoadingSpinner />;
   }
 
   return (
     <div className="space-y-6">
-      <div className="bg-white rounded-lg shadow-md p-6">
-        <h1 className="text-3xl font-kanit font-bold text-deep-forest mb-6">
-          แก้ไขข้อมูลทริป
-        </h1>
+      <Card>
+        <PageHeader
+          title="แก้ไขข้อมูลทริป"
+          description="จัดการข้อมูลพื้นฐานของทริป เช่น ชื่อ วันที่ สถานที่ และจำนวนคน"
+          icon={Info}
+        />
 
         {/* Message Display */}
         {message && (
-          <div
-            className={`mb-6 p-4 rounded-lg flex items-center space-x-3 ${
-              message.type === 'success'
-                ? 'bg-green-50 text-green-800 border border-green-200'
-                : 'bg-red-50 text-red-800 border border-red-200'
-            }`}
-          >
-            {message.type === 'success' ? (
-              <CheckCircle size={20} />
-            ) : (
-              <AlertCircle size={20} />
-            )}
-            <span>{message.text}</span>
-          </div>
+          <MessageDisplay
+            type={message.type}
+            message={message.text}
+            onClose={() => setMessage(null)}
+            className="mb-6"
+          />
         )}
 
         {/* Form */}
         <div className="space-y-6">
-          {/* Title */}
-          <div>
-            <label className="block text-sm font-medium text-charcoal mb-2">
-              ชื่อทริป <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              value={tripInfo.title}
-              onChange={(e) => setTripInfo({ ...tripInfo, title: e.target.value })}
-              className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-deep-forest focus:border-transparent ${
-                errors.title ? 'border-red-500' : 'border-gray-300'
-              }`}
-              placeholder="เช่น Khao Yai Getaway"
-            />
-            {errors.title && (
-              <p className="mt-1 text-sm text-red-500">{errors.title}</p>
-            )}
-          </div>
+          <FormField
+            label="ชื่อทริป"
+            name="title"
+            type="text"
+            value={tripInfo.title}
+            onChange={(value) => setTripInfo({ ...tripInfo, title: value as string })}
+            error={errors.title}
+            required
+            placeholder="เช่น Khao Yai Getaway"
+          />
 
-          {/* Subtitle */}
-          <div>
-            <label className="block text-sm font-medium text-charcoal mb-2">
-              คำบรรยาย <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              value={tripInfo.subtitle}
-              onChange={(e) => setTripInfo({ ...tripInfo, subtitle: e.target.value })}
-              className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-deep-forest focus:border-transparent ${
-                errors.subtitle ? 'border-red-500' : 'border-gray-300'
-              }`}
-              placeholder="เช่น 14 Friends, 2D1N"
-            />
-            {errors.subtitle && (
-              <p className="mt-1 text-sm text-red-500">{errors.subtitle}</p>
-            )}
-          </div>
+          <FormField
+            label="คำบรรยาย"
+            name="subtitle"
+            type="text"
+            value={tripInfo.subtitle}
+            onChange={(value) => setTripInfo({ ...tripInfo, subtitle: value as string })}
+            error={errors.subtitle}
+            required
+            placeholder="เช่น 14 Friends, 2D1N"
+          />
 
-          {/* Dates */}
-          <div>
-            <label className="block text-sm font-medium text-charcoal mb-2">
-              วันที่ <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              value={tripInfo.dates}
-              onChange={(e) => setTripInfo({ ...tripInfo, dates: e.target.value })}
-              className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-deep-forest focus:border-transparent ${
-                errors.dates ? 'border-red-500' : 'border-gray-300'
-              }`}
-              placeholder="เช่น เสาร์ 8 - อาทิตย์ 9 พฤศจิกายน 2568"
-            />
-            {errors.dates && (
-              <p className="mt-1 text-sm text-red-500">{errors.dates}</p>
-            )}
-          </div>
+          <FormField
+            label="วันที่"
+            name="dates"
+            type="text"
+            value={tripInfo.dates}
+            onChange={(value) => setTripInfo({ ...tripInfo, dates: value as string })}
+            error={errors.dates}
+            required
+            placeholder="เช่น เสาร์ 8 - อาทิตย์ 9 พฤศจิกายน 2568"
+          />
 
-          {/* Location */}
-          <div>
-            <label className="block text-sm font-medium text-charcoal mb-2">
-              สถานที่ <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              value={tripInfo.location}
-              onChange={(e) => setTripInfo({ ...tripInfo, location: e.target.value })}
-              className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-deep-forest focus:border-transparent ${
-                errors.location ? 'border-red-500' : 'border-gray-300'
-              }`}
-              placeholder="เช่น DN Poolvilla Khaoyai"
-            />
-            {errors.location && (
-              <p className="mt-1 text-sm text-red-500">{errors.location}</p>
-            )}
-          </div>
+          <FormField
+            label="สถานที่"
+            name="location"
+            type="text"
+            value={tripInfo.location}
+            onChange={(value) => setTripInfo({ ...tripInfo, location: value as string })}
+            error={errors.location}
+            required
+            placeholder="เช่น DN Poolvilla Khaoyai"
+          />
 
-          {/* Team Size */}
-          <div>
-            <label className="block text-sm font-medium text-charcoal mb-2">
-              จำนวนคน <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="number"
-              min="1"
-              value={tripInfo.teamSize}
-              onChange={(e) => setTripInfo({ ...tripInfo, teamSize: parseInt(e.target.value) || 0 })}
-              className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-deep-forest focus:border-transparent ${
-                errors.teamSize ? 'border-red-500' : 'border-gray-300'
-              }`}
-              placeholder="เช่น 14"
-            />
-            {errors.teamSize && (
-              <p className="mt-1 text-sm text-red-500">{errors.teamSize}</p>
-            )}
-          </div>
+          <FormField
+            label="จำนวนคน"
+            name="teamSize"
+            type="number"
+            value={tripInfo.teamSize}
+            onChange={(value) => setTripInfo({ ...tripInfo, teamSize: value as number })}
+            error={errors.teamSize}
+            required
+            min={1}
+            placeholder="เช่น 14"
+          />
 
           {/* Save Button */}
-          <div className="flex justify-end pt-4">
-            <button
-              onClick={handleSave}
-              disabled={saving}
-              className="flex items-center space-x-2 px-6 py-3 bg-deep-forest text-white rounded-lg hover:bg-deep-forest/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-            >
-              <Save size={20} />
-              <span>{saving ? 'กำลังบันทึก...' : 'บันทึกข้อมูล'}</span>
-            </button>
+          <div className="flex justify-end pt-4 border-t">
+            <SaveButton onClick={handleSave} loading={saving}>
+              บันทึกข้อมูล
+            </SaveButton>
           </div>
         </div>
-      </div>
+      </Card>
     </div>
   );
 }

@@ -433,7 +433,7 @@ export default function TimelinePage() {
               ยืนยันการลบ
             </h3>
             <p className="text-charcoal/70 mb-6">
-              คุณต้องการลบรายการ "{timeline[deleteConfirm]?.title}" ใช่หรือไม่?
+              คุณต้องการลบรายการ &quot;{timeline[deleteConfirm]?.title}&quot; ใช่หรือไม่?
             </p>
             <div className="flex justify-end space-x-3">
               <button

@@ -35,35 +35,35 @@
   - Add save functionality to update timeline array in content.json
   - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.6_
 
-- [ ] 6. Implement activities management
+- [x] 6. Implement activities management
   - Create activities list view with cards
   - Build add/edit form for activities (title, description, image, icon)
   - Implement delete with confirmation dialog
   - Add save functionality to update activities array
   - _Requirements: 5.1, 5.2, 5.3, 5.4_
 
-- [ ] 7. Build restaurant information editor
+- [x] 7. Build restaurant information editor
   - Create restaurant list view
   - Build add/edit form (name, type, phone, mapUrl, image, notes)
   - Add phone and URL validation
   - Implement save functionality for restaurants array
   - _Requirements: 6.1, 6.2, 6.3, 6.4_
 
-- [ ] 8. Create data API routes
+- [x] 8. Create data API routes
   - Implement GET `/api/data` to read content.json
   - Implement PUT `/api/data` to update content.json
   - Add error handling and validation
   - Return consistent API response format
   - _Requirements: 7.1, 7.3_
 
-- [ ] 9. Add form components and UI polish
+- [x] 9. Add form components and UI polish
   - Create reusable FormField component
   - Build SaveButton component with loading state
   - Add error message display component
   - Implement responsive layout for tablet/desktop
   - _Requirements: 8.1, 8.2, 8.3, 8.4, 8.5_
 
-- [ ] 10. Testing and refinement
+- [-] 10. Testing and refinement
   - Test all CRUD operations for each section
   - Verify image uploads work correctly
   - Test data persistence across page refreshes

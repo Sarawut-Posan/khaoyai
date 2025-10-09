@@ -1,12 +1,12 @@
 {
   "version": "1.0",
-  "lastModified": "2025-10-09T07:12:21.425Z",
+  "lastModified": "2025-10-09T08:35:39.716Z",
   "tripInfo": {
-    "title": "Khao Yai Getaway",
+    "title": "Khao Yai Getaway ทดสอบ",
     "subtitle": "14 Friends, 2D1N",
     "dates": "เสาร์ 8 - อาทิตย์ 9 พฤศจิกายน 2568",
     "location": "DN Poolvilla Khaoyai",
-    "teamSize": 14
+    "teamSize": 15
   },
   "imageUrls": {
     "hero": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80",
@@ -50,10 +50,10 @@
     },
     {
       "time": "10:00",
-      "title": "พบกันที่ Tathamplaphow Restaurant",
+      "title": "พบกันที่ ตาทำปลาเผา",
       "icon": "map-pin",
       "description": "นัดพบที่ร้าน Tathamplaphow Restaurant",
-      "image": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80"
+      "image": "/images/1759998933145-____.jpg"
     },
     {
       "time": "11:00",
