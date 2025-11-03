@@ -448,6 +448,589 @@
       "label": "หมวก/แว่นกันแดด"
     }
   ],
+  "makroChecklist": [
+    {
+      "category": "โปรตีน",
+      "icon": "beef",
+      "items": [
+        {
+          "name": "หมูคอ/สันคอ",
+          "minQty": 2.5,
+          "maxQty": 3,
+          "unit": "กก.",
+          "notes": null
+        },
+        {
+          "name": "ไก่สะโพก/ปีก (นิวออร์ลีน)",
+          "minQty": 2.5,
+          "maxQty": 3,
+          "unit": "กก.",
+          "notes": "แนะนำแบบหมัก; ผงหมักนิวออร์ลีน 1 ซองใหญ่"
+        },
+        {
+          "name": "กุ้ง (เบอร์ 31/40)",
+          "minQty": 2,
+          "maxQty": 2,
+          "unit": "กก.",
+          "notes": null
+        },
+        {
+          "name": "ปลาหมึก",
+          "minQty": 1.5,
+          "maxQty": 1.5,
+          "unit": "กก.",
+          "notes": null
+        },
+        {
+          "name": "เนื้อวัว (สันนอก/ใบพาย)",
+          "minQty": 1.5,
+          "maxQty": 2,
+          "unit": "กก.",
+          "notes": null
+        },
+        {
+          "name": "หอยหวาน",
+          "minQty": 1,
+          "maxQty": 1.5,
+          "unit": "กก.",
+          "notes": null
+        },
+        {
+          "name": "ปลานิลเผาเกลือ",
+          "minQty": 4,
+          "maxQty": 5,
+          "unit": "ตัว",
+          "notes": "800–1,000 กรัม/ตัว"
+        },
+        {
+          "name": "ไส้กรอก/นักเก็ต (ออปชัน)",
+          "minQty": 2,
+          "maxQty": 3,
+          "unit": "กก.",
+          "notes": "ย่างง่ายสำหรับกินเล่น"
+        }
+      ]
+    },
+    {
+      "category": "ผัก-กับแกล้ม",
+      "icon": "leaf",
+      "items": [
+        {
+          "name": "เห็ดรวม (ออรินจิ/แชมปิญอง/เข็มทอง)",
+          "minQty": 1.5,
+          "maxQty": 2,
+          "unit": "กก.",
+          "notes": null
+        },
+        {
+          "name": "ข้าวโพดอ่อน",
+          "minQty": 1,
+          "maxQty": 1,
+          "unit": "กก.",
+          "notes": null
+        },
+        {
+          "name": "ผักย่างรวม (พริกหวาน/ซูกินี/หอมหัวใหญ่)",
+          "minQty": 2,
+          "maxQty": 3,
+          "unit": "กก.",
+          "notes": null
+        },
+        {
+          "name": "ผักชี (ทำน้ำจิ้มซีฟู้ด)",
+          "minQty": 3,
+          "maxQty": 3,
+          "unit": "กำ",
+          "notes": null
+        },
+        {
+          "name": "รากผักชี (ทำน้ำจิ้มซีฟู้ด)",
+          "minQty": 10,
+          "maxQty": 10,
+          "unit": "ราก",
+          "notes": null
+        },
+        {
+          "name": "กระเทียมจีน (ทำน้ำจิ้มซีฟู้ด)",
+          "minQty": 2,
+          "maxQty": 2,
+          "unit": "หัวใหญ่",
+          "notes": null
+        },
+        {
+          "name": "พริกขี้หนูสวน (ทำน้ำจิ้มซีฟู้ด)",
+          "minQty": 200,
+          "maxQty": 200,
+          "unit": "กรัม",
+          "notes": null
+        },
+        {
+          "name": "มะนาว (จิ้ม/เครื่องดื่ม)",
+          "minQty": 20,
+          "maxQty": 25,
+          "unit": "ลูก",
+          "notes": null
+        },
+        {
+          "name": "ผักกาดหอม (แกล้มปลา)",
+          "minQty": 3,
+          "maxQty": 3,
+          "unit": "หัว",
+          "notes": null
+        },
+        {
+          "name": "กะหล่ำปลี (แกล้มปลา)",
+          "minQty": 2,
+          "maxQty": 2,
+          "unit": "หัว",
+          "notes": null
+        },
+        {
+          "name": "แตงกวา (แกล้มปลา)",
+          "minQty": 2,
+          "maxQty": 2,
+          "unit": "กก.",
+          "notes": null
+        },
+        {
+          "name": "ผักชีฝรั่ง",
+          "minQty": 1,
+          "maxQty": 1,
+          "unit": "กำ",
+          "notes": null
+        },
+        {
+          "name": "โหระพา",
+          "minQty": 2,
+          "maxQty": 2,
+          "unit": "กำ",
+          "notes": null
+        },
+        {
+          "name": "สะระแหน่",
+          "minQty": 2,
+          "maxQty": 2,
+          "unit": "กำ",
+          "notes": null
+        },
+        {
+          "name": "ตะไคร้ (ออปชัน)",
+          "minQty": 10,
+          "maxQty": 10,
+          "unit": "ต้น",
+          "notes": "ยัดท้องปลา/แต่งกลิ่น"
+        },
+        {
+          "name": "ใบมะกรูด (ออปชัน)",
+          "minQty": 20,
+          "maxQty": 20,
+          "unit": "ใบ",
+          "notes": "แต่งกลิ่นปลา"
+        }
+      ]
+    },
+    {
+      "category": "เครื่องปรุง-ซอส",
+      "icon": "package",
+      "items": [
+        {
+          "name": "เกลือเม็ด (เผาปลา)",
+          "minQty": 1,
+          "maxQty": 1,
+          "unit": "ถุง",
+          "notes": null
+        },
+        {
+          "name": "ซีอิ๊วขาว",
+          "minQty": 1,
+          "maxQty": 1,
+          "unit": "ขวดใหญ่",
+          "notes": null
+        },
+        {
+          "name": "ซอสหอยนางรม",
+          "minQty": 1,
+          "maxQty": 1,
+          "unit": "ขวดใหญ่",
+          "notes": null
+        },
+        {
+          "name": "ซีอิ๊วดำหวาน",
+          "minQty": 1,
+          "maxQty": 1,
+          "unit": "ขวด",
+          "notes": null
+        },
+        {
+          "name": "พริกไทยป่น",
+          "minQty": 1,
+          "maxQty": 1,
+          "unit": "ขวด",
+          "notes": null
+        },
+        {
+          "name": "น้ำมันพืช",
+          "minQty": 1,
+          "maxQty": 1,
+          "unit": "ขวด",
+          "notes": null
+        },
+        {
+          "name": "ซอสบาร์บีคิว",
+          "minQty": 1,
+          "maxQty": 1,
+          "unit": "ขวดใหญ่",
+          "notes": null
+        },
+        {
+          "name": "เนยจืด",
+          "minQty": 500,
+          "maxQty": 500,
+          "unit": "กรัม",
+          "notes": null
+        },
+        {
+          "name": "น้ำตาลปี๊บ",
+          "minQty": 1,
+          "maxQty": 1,
+          "unit": "ถุงเล็ก",
+          "notes": null
+        },
+        {
+          "name": "น้ำตาลทราย",
+          "minQty": 1,
+          "maxQty": 1,
+          "unit": "ถุงเล็ก",
+          "notes": null
+        },
+        {
+          "name": "น้ำปลา",
+          "minQty": 1,
+          "maxQty": 1,
+          "unit": "ขวดใหญ่",
+          "notes": null
+        },
+        {
+          "name": "น้ำส้มสายชู",
+          "minQty": 1,
+          "maxQty": 1,
+          "unit": "ขวด",
+          "notes": null
+        },
+        {
+          "name": "น้ำจิ้มซีฟู้ด (ขวด)",
+          "minQty": 2,
+          "maxQty": 2,
+          "unit": "ขวดใหญ่",
+          "notes": "หรือทำเองจากวัตถุดิบผัก-กับแกล้ม"
+        },
+        {
+          "name": "น้ำจิ้มถั่วลิสง (ซาเตะ/ถั่วตัด)",
+          "minQty": 2,
+          "maxQty": 2,
+          "unit": "ขวดใหญ่",
+          "notes": "หรือทำเอง: ถั่วบด500g+กะทิ1L+พริกแกงเผ็ด100g+น้ำมะขาม250ml"
+        },
+        {
+          "name": "พริกป่น (ออปชัน)",
+          "minQty": 1,
+          "maxQty": 1,
+          "unit": "ซอง/ขวด",
+          "notes": null
+        },
+        {
+          "name": "ข้าวคั่ว (ออปชัน)",
+          "minQty": 1,
+          "maxQty": 1,
+          "unit": "ซอง",
+          "notes": null
+        },
+        {
+          "name": "มะนาวเพิ่ม (ออปชัน)",
+          "minQty": 10,
+          "maxQty": 10,
+          "unit": "ลูก",
+          "notes": "สำรองเผื่อค็อกเทล/น้ำจิ้ม"
+        }
+      ]
+    },
+    {
+      "category": "ของกินเล่น-ของหวาน",
+      "icon": "ice-cream",
+      "items": [
+        {
+          "name": "ขนมขบเคี้ยวรวม",
+          "minQty": 3,
+          "maxQty": 4,
+          "unit": "แพ็กใหญ่",
+          "notes": null
+        },
+        {
+          "name": "ผลไม้รวม (แตงโม/สับปะรด/ฝรั่ง) (ออปชัน)",
+          "minQty": 5,
+          "maxQty": 7,
+          "unit": "กก.",
+          "notes": null
+        },
+        {
+          "name": "ไอศกรีม/เยลลี่ (ออปชัน)",
+          "minQty": 1,
+          "maxQty": 2,
+          "unit": "ลัง",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "category": "เครื่องดื่ม-น้ำแข็ง",
+      "icon": "wine",
+      "items": [
+        {
+          "name": "น้ำดื่ม 1.5 ลิตร",
+          "minQty": 24,
+          "maxQty": 36,
+          "unit": "ขวด",
+          "notes": null
+        },
+        {
+          "name": "โซดา",
+          "minQty": 24,
+          "maxQty": 24,
+          "unit": "ขวด",
+          "notes": null
+        },
+        {
+          "name": "น้ำอัดลม 1.5 ลิตร",
+          "minQty": 6,
+          "maxQty": 6,
+          "unit": "ขวด",
+          "notes": null
+        },
+        {
+          "name": "น้ำแข็งก้อน",
+          "minQty": 20,
+          "maxQty": 20,
+          "unit": "กก.",
+          "notes": null
+        },
+        {
+          "name": "น้ำแข็งบด",
+          "minQty": 10,
+          "maxQty": 10,
+          "unit": "กก.",
+          "notes": null
+        },
+        {
+          "name": "Hoegaarden 330 มล.",
+          "minQty": 24,
+          "maxQty": 24,
+          "unit": "ขวด",
+          "notes": null
+        },
+        {
+          "name": "เบียร์อื่น ๆ",
+          "minQty": 24,
+          "maxQty": 36,
+          "unit": "ขวด/กระป๋อง",
+          "notes": null
+        },
+        {
+          "name": "เหล้า (วิสกี้/รัม/เตกีลา)",
+          "minQty": 1,
+          "maxQty": 2,
+          "unit": "ขวด",
+          "notes": null
+        },
+        {
+          "name": "มิกซ์เซอร์รวม (โซดา/โค้ก/โทนิค)",
+          "minQty": 24,
+          "maxQty": 24,
+          "unit": "ขวด",
+          "notes": null
+        },
+        {
+          "name": "เกลือ (ทำช็อต)",
+          "minQty": 1,
+          "maxQty": 1,
+          "unit": "ขวด/ซอง",
+          "notes": null
+        },
+        {
+          "name": "มะนาว (สำหรับช็อต/ค็อกเทล)",
+          "minQty": 10,
+          "maxQty": 10,
+          "unit": "ลูก",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "category": "ของใช้-จำเป็น",
+      "icon": "utensils",
+      "items": [
+        {
+          "name": "ฟอยล์หนา",
+          "minQty": 1,
+          "maxQty": 1,
+          "unit": "ม้วน",
+          "notes": null
+        },
+        {
+          "name": "ถาด/ฟอยล์สำหรับเผาปลา",
+          "minQty": 2,
+          "maxQty": 3,
+          "unit": "แผ่น",
+          "notes": null
+        },
+        {
+          "name": "ถุงขยะดำ",
+          "minQty": 24,
+          "maxQty": 36,
+          "unit": "ใบ",
+          "notes": null
+        },
+        {
+          "name": "ทิชชู่ม้วน",
+          "minQty": 6,
+          "maxQty": 6,
+          "unit": "ม้วน",
+          "notes": null
+        },
+        {
+          "name": "ทิชชู่เปียก",
+          "minQty": 2,
+          "maxQty": 3,
+          "unit": "แพ็ก",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "category": "ของใช้-แนะนำ",
+      "icon": "flame",
+      "items": [
+        {
+          "name": "ถ่าน",
+          "minQty": 1,
+          "maxQty": 2,
+          "unit": "ถุง",
+          "notes": "กรณีใช้เตาถ่าน"
+        },
+        {
+          "name": "เชื้อไฟ",
+          "minQty": 1,
+          "maxQty": 1,
+          "unit": "กลัก/กระป๋อง",
+          "notes": null
+        },
+        {
+          "name": "ไฟแช็ก",
+          "minQty": 2,
+          "maxQty": 2,
+          "unit": "อัน",
+          "notes": null
+        },
+        {
+          "name": "แก๊สกระป๋อง (เตาพกพา)",
+          "minQty": 2,
+          "maxQty": 4,
+          "unit": "กระป๋อง",
+          "notes": null
+        },
+        {
+          "name": "คีมคีบ",
+          "minQty": 2,
+          "maxQty": 3,
+          "unit": "อัน",
+          "notes": null
+        },
+        {
+          "name": "ตะแกรงย่างสำรอง",
+          "minQty": 1,
+          "maxQty": 2,
+          "unit": "ชิ้น",
+          "notes": null
+        },
+        {
+          "name": "มีด+เขียง",
+          "minQty": 2,
+          "maxQty": 2,
+          "unit": "ชุด",
+          "notes": null
+        },
+        {
+          "name": "ถ้วย/ชาม/จาน (ให้พอทุกคน)",
+          "minQty": 15,
+          "maxQty": 15,
+          "unit": "ชุด",
+          "notes": null
+        },
+        {
+          "name": "ไม้เสียบ",
+          "minQty": 1,
+          "maxQty": 2,
+          "unit": "ห่อ",
+          "notes": null
+        },
+        {
+          "name": "กล่อง/ถุงซิปล็อก หลายขนาด",
+          "minQty": null,
+          "maxQty": null,
+          "unit": "ชิ้น/ถุง",
+          "notes": null
+        },
+        {
+          "name": "ฟิล์มแรป",
+          "minQty": 1,
+          "maxQty": 1,
+          "unit": "ม้วน",
+          "notes": null
+        },
+        {
+          "name": "น้ำยาล้างจาน",
+          "minQty": 1,
+          "maxQty": 1,
+          "unit": "ขวด",
+          "notes": null
+        },
+        {
+          "name": "ฟองน้ำ",
+          "minQty": 2,
+          "maxQty": 3,
+          "unit": "ก้อน",
+          "notes": null
+        },
+        {
+          "name": "ถุงมือยาง",
+          "minQty": 1,
+          "maxQty": 1,
+          "unit": "กล่อง",
+          "notes": null
+        },
+        {
+          "name": "กะละมัง/ถาดสแตนเลสใหญ่",
+          "minQty": 2,
+          "maxQty": 3,
+          "unit": "ใบ",
+          "notes": null
+        },
+        {
+          "name": "คูลเลอร์/กระติกน้ำแข็ง",
+          "minQty": 1,
+          "maxQty": 2,
+          "unit": "ใบ",
+          "notes": null
+        },
+        {
+          "name": "พลาสติกรองโต๊ะ (ออปชัน)",
+          "minQty": 1,
+          "maxQty": 1,
+          "unit": "ม้วน",
+          "notes": null
+        }
+      ]
+    }
+  ],
   "shoppingCategories": [
     {
       "icon": "beef",

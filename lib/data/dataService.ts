@@ -1,47 +1,39 @@
 import { ContentData } from '@/lib/types';
 import * as constants from '@/lib/constants';
-import {
-  uploadJsonToBlob,
-  getJsonFromBlobByPathname
-} from '@/lib/blobStorage';
+import { readFile, writeFile } from 'fs/promises';
+import { join } from 'path';
 
-const CONTENT_JSON_PATHNAME = 'data/content.json';
+const CONTENT_JSON_PATH = join(process.cwd(), 'data', 'content.json');
 
 /**
- * Read content data from Blob Storage
+ * Read content data from local file
  * Falls back to constants if file doesn't exist
  */
 export async function readContentData(): Promise<ContentData> {
   try {
-    // Try to read from Blob Storage
-    const data = await getJsonFromBlobByPathname<ContentData>(CONTENT_JSON_PATHNAME);
-
-    if (data) {
-      return data;
-    }
-
-    // If file doesn't exist in Blob, return data from constants
-    console.log('content.json not found in Blob Storage, using constants as fallback');
-    return getDataFromConstants();
+    // Try to read from local file
+    const fileContent = await readFile(CONTENT_JSON_PATH, 'utf-8');
+    const data = JSON.parse(fileContent) as ContentData;
+    return data;
   } catch (error) {
-    console.error('Error reading content from Blob:', error);
+    console.error('Error reading content from file:', error);
     // Fallback to constants on error
     return getDataFromConstants();
   }
 }
 
 /**
- * Write content data to Blob Storage
+ * Write content data to local file
  */
 export async function writeContentData(data: ContentData): Promise<void> {
   // Update lastModified timestamp
   data.lastModified = new Date().toISOString();
 
   try {
-    // Upload to Blob Storage
-    await uploadJsonToBlob(data, CONTENT_JSON_PATHNAME);
+    // Write to local file
+    await writeFile(CONTENT_JSON_PATH, JSON.stringify(data, null, 2), 'utf-8');
   } catch (error) {
-    console.error('Error writing content to Blob:', error);
+    console.error('Error writing content to file:', error);
     throw new Error('ไม่สามารถบันทึกข้อมูลได้');
   }
 }
@@ -65,6 +57,7 @@ function getDataFromConstants(): ContentData {
     day2Options: constants.DAY2_OPTIONS,
     dressCodeColors: constants.DRESS_CODE_COLORS,
     checklistItems: constants.CHECKLIST_ITEMS,
+    makroChecklist: [],
     shoppingCategories: constants.SHOPPING_CATEGORIES,
     thongsomboonPromotions: constants.THONGSOMBOON_PROMOTIONS,
     departureInfo: constants.DEPARTURE_INFO,

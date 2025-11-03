@@ -58,6 +58,7 @@ function getDataFromConstants(): ContentData {
     day2Options: constants.DAY2_OPTIONS,
     dressCodeColors: constants.DRESS_CODE_COLORS,
     checklistItems: constants.CHECKLIST_ITEMS,
+    makroChecklist: [],
     shoppingCategories: constants.SHOPPING_CATEGORIES,
     thongsomboonPromotions: constants.THONGSOMBOON_PROMOTIONS,
     departureInfo: constants.DEPARTURE_INFO,

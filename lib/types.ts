@@ -107,6 +107,20 @@ export interface ChecklistItem {
   label: string;
 }
 
+export interface MakroChecklistItem {
+  name: string;
+  minQty: number | null;
+  maxQty: number | null;
+  unit: string;
+  notes: string | null;
+}
+
+export interface MakroChecklistCategory {
+  category: string;
+  icon: string;
+  items: MakroChecklistItem[];
+}
+
 export interface ThongsomboonPromotion {
   icon: string;
   title: string;
@@ -180,6 +194,7 @@ export interface ContentData {
   day2Options: Day2Option[];
   dressCodeColors: DressCodeColor[];
   checklistItems: ChecklistItem[];
+  makroChecklist: MakroChecklistCategory[];
   shoppingCategories: ShoppingCategory[];
   thongsomboonPromotions: ThongsomboonPromotion[];
   departureInfo: DepartureInfo;
