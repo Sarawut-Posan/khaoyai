@@ -77,42 +77,49 @@ export const TIMELINE_DATA: TimelineItem[] = [
     isDayMarker: true,
   },
   {
-    time: '10:00',
-    title: 'พบกันที่ Tathamplaphow Restaurant',
+    time: '07:30',
+    title: 'พบกันที่ บ้านพักเด็กและครอบครัว',
     icon: 'map-pin',
-    description: 'นัดพบที่ร้าน Tathamplaphow Restaurant',
-    image: IMAGE_URLS.breakfastKrua,
+    description: 'จุดนัดพบที่บ้านพักเด็กและครอบครัว จ.สระบุรี',
+    image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&q=80',
   },
   {
-    time: '11:00',
+    time: '10:00',
+    title: 'กิจกรรมบริจาค',
+    icon: 'heart',
+    description: 'กิจกรรมบริจาคที่บ้านพักเด็กและครอบครัว (30 นาที)',
+    image: 'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=800&q=80',
+  },
+  {
+    time: '10:30',
     title: 'เดินทางสู่เขาใหญ่',
     icon: 'car',
-    description: 'เดินทางด้วยรถตู้ ระยะทาง ~130 กม.',
+    description: 'เดินทางจากสระบุรีสู่เขาใหญ่',
     image: IMAGE_URLS.hero,
   },
   {
-    time: '13:00',
+    time: '12:00',
     title: 'ทานอาหารกลางวัน',
     icon: 'utensils',
-    description: 'ร้านอาหารในเขาใหญ่',
+    description: 'ครัวบ้านนายพล (1-1.5 ชม.)',
     image: IMAGE_URLS.kruaKhaoYai,
   },
   {
-    time: '14:30',
-    title: 'กิจกรรมที่ Thong Somboon Club',
+    time: '14:00',
+    title: 'กิจกรรมที่ Rapsodia Park Khao Yai',
     icon: 'activity',
-    description: 'ATV, Zipline, Paintball และอื่นๆ',
+    description: 'ATV และนั่งชิล (1-2 ชม.)',
     image: IMAGE_URLS.atv,
   },
   {
-    time: '17:00',
-    title: 'ช้อปปิ้งที่ Makro',
+    time: '16:30',
+    title: 'ช้อปปิ้งที่ Makro Foodservice',
     icon: 'shopping-cart',
     description: 'ซื้อของทำอาหารเย็นและของว่าง',
     image: IMAGE_URLS.shopping,
   },
   {
-    time: '18:30',
+    time: '18:00',
     title: 'เช็คอินวิลล่า',
     icon: 'home',
     description: 'DN Poolvilla Khaoyai - แบ่งห้องและพักผ่อน',
@@ -332,13 +339,43 @@ export const SHOPPING_CATEGORIES: ShoppingCategory[] = [
 
 // Day 1 departure data for Slide 03
 export const DEPARTURE_INFO = {
-  meetingPoint: 'Tathamplaphow Restaurant',
-  meetingTime: '10:00 น.',
-  estimatedArrival: 'ถึงเขาใหญ่ประมาณ 09:30 น.',
-  mapUrl: 'https://www.google.com/maps/place/Tathamplaphow+Restaurant/@14.6989259,101.4056615,14.64z/data=!4m6!3m5!1s0x311c2a4c054e63e3:0xbc52c6e80e1e27ae!8m2!3d14.708138!4d101.4049904!16s%2Fg%2F1hm6h6xbh?authuser=0&entry=ttu&g_ep=EgoyMDI1MTAwNC4wIKXMDSoASAFQAw%3D%3D',
+  meetingPoint: 'บ้านพักเด็กและครอบครัว',
+  meetingTime: '07:30 น.',
+  estimatedArrival: 'ถึงบ้านพักเด็กฯ ไม่เกิน 10:00 น.',
+  mapUrl: 'https://maps.app.goo.gl/XoyzzALf47VfxwQ36',
+  donationActivity: '10:00-10:30 น. (ประมาณ 30 นาที)',
 };
 
-// Tathamplaphow Restaurant (ตาทำปลาเผา) detailed information
+// Charity location information
+export const CHARITY_INFO = {
+  name: 'บ้านพักเด็กและครอบครัว',
+  location: 'จ.สระบุรี',
+  description: 'กิจกรรมบริจาคและมอบของให้กับบ้านพักเด็กและครอบครัว',
+  mapUrl: 'https://maps.app.goo.gl/XoyzzALf47VfxwQ36',
+  activityTime: '10:00-10:30 น.',
+  duration: 'ประมาณ 30 นาที',
+};
+
+// Krua Ban Nai Phon Restaurant information
+export const KRUA_BAN_NAI_PHON_INFO = {
+  name: 'ครัวบ้านนายพล',
+  type: 'อาหารไทย',
+  description: 'ร้านอาหารไทยในเขาใหญ่',
+  mapUrl: 'https://maps.google.com/?q=ครัวบ้านนายพล+เขาใหญ่',
+  mealTime: '12:00-13:30 น.',
+  duration: '1-1.5 ชั่วโมง',
+};
+
+// Rapsodia Park information
+export const RAPSODIA_INFO = {
+  name: 'Rapsodia Park Khao Yai',
+  activities: ['ATV', 'นั่งชิล'],
+  duration: '1-2 ชั่วโมง',
+  mapUrl: 'https://maps.google.com/?q=Rapsodia+Park+Khao+Yai',
+  description: 'สวนสนุกและกิจกรรมกลางแจ้งในเขาใหญ่',
+};
+
+// Tathamplaphow Restaurant (ตาทำปลาเผา) detailed information - LEGACY (ไม่ใช้แล้ว)
 export const TATHAMPLAPHOW_INFO = {
   name: 'ตาทำปลาเผา',
   englishName: 'Tathamplaphow Restaurant',
@@ -432,8 +469,10 @@ export const BREAKFAST_SPOTS = [
 // External links
 export const EXTERNAL_LINKS = {
   villaMap: 'https://maps.google.com/?q=DN+Poolvilla+Khaoyai',
-  thongSomboonMap: 'https://maps.google.com/?q=Thong+Somboon+Club+Khao+Yai',
-  makroMap: 'https://maps.google.com/?q=Makro+Pak+Chong',
+  rapsodiaMap: 'https://maps.google.com/?q=Rapsodia+Park+Khao+Yai',
+  makroMap: 'https://maps.google.com/?q=Makro+Foodservice+Pak+Chong',
+  charityMap: 'https://maps.app.goo.gl/XoyzzALf47VfxwQ36',
+  kruaBanNaiPhonMap: 'https://maps.google.com/?q=ครัวบ้านนายพล+เขาใหญ่',
   shoppingChecklist: 'https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID',
   villaPhone: '081-234-5678',
 } as const;

@@ -75,132 +75,110 @@ export default function Slide04({ isActive }: SlideProps) {
           transition={{ duration: 0.6 }}
         >
           <h2 className="font-kanit text-3xl md:text-4xl lg:text-5xl font-bold text-deepForest mb-3">
-            ไร่ทองสมบูรณ์คลับ
+            Rapsodia Park Khao Yai
           </h2>
           <p className="font-sarabun text-lg md:text-xl text-charcoal/80 mb-4">
-            Thongsomboon Club - Adventure Park ใจกลางเขาใหญ่
+            สวนสนุกและกิจกรรมกลางแจ้งในเขาใหญ่
           </p>
           
-          {/* Team split indicator */}
+          {/* Activity info */}
           <div className="flex items-center justify-center gap-3">
             <Badge variant="info" size="md" className="text-base px-4 py-2">
-              <Users className="w-4 h-4 inline mr-2" />
-              แบ่งทีม 7 + 7 คน
+              <Bike className="w-4 h-4 inline mr-2" />
+              ATV และนั่งชิล
             </Badge>
             <Badge variant="warning" size="md" className="text-base px-4 py-2">
               <Clock className="w-4 h-4 inline mr-2" />
-              14:30 - 18:00 น. (~3.5 ชม.)
+              14:00 - 16:00 น. (1-2 ชม.)
             </Badge>
           </div>
         </motion.div>
 
-        {/* Activity cards grid */}
+        {/* Main Activity Highlights */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"
+          className="mb-8"
           variants={containerVariants}
           initial="hidden"
           animate={isActive ? 'visible' : 'hidden'}
         >
-          {activities.map((activity) => (
-            <motion.div key={activity.id} variants={itemVariants}>
-              <Card
-                title={activity.title}
-                description={activity.description}
-                image={activity.image}
-                icon={activity.icon ? iconMap[activity.icon] : undefined}
-              />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* ATV Activity */}
+            <motion.div
+              variants={itemVariants}
+              className="bg-white rounded-xl p-6 shadow-lg border-2 border-terracotta/30"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="bg-terracotta/20 p-3 rounded-full">
+                  <Bike className="w-6 h-6 text-terracotta" />
+                </div>
+                <h3 className="font-kanit text-2xl font-bold text-deepForest">
+                  ATV Adventure
+                </h3>
+              </div>
+              <div className="aspect-video rounded-lg overflow-hidden mb-4">
+                <img
+                  src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80"
+                  alt="ATV"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <p className="font-sarabun text-base text-charcoal/80 mb-3">
+                ขับรถ ATV สุดมันส์ลุยเส้นทางผจญภัยในธรรมชาติ เหมาะกับทุกวัย
+              </p>
+              <ul className="space-y-2">
+                <li className="flex items-start gap-2 font-sarabun text-sm text-charcoal/70">
+                  <Check className="w-4 h-4 text-sage flex-shrink-0 mt-0.5" />
+                  <span>เส้นทางปลอดภัย มีเจ้าหน้าที่คอยดูแล</span>
+                </li>
+                <li className="flex items-start gap-2 font-sarabun text-sm text-charcoal/70">
+                  <Check className="w-4 h-4 text-sage flex-shrink-0 mt-0.5" />
+                  <span>อุปกรณ์ป้องกันครบครัน</span>
+                </li>
+                <li className="flex items-start gap-2 font-sarabun text-sm text-charcoal/70">
+                  <Check className="w-4 h-4 text-sage flex-shrink-0 mt-0.5" />
+                  <span>ระยะเวลาประมาณ 30-45 นาที</span>
+                </li>
+              </ul>
             </motion.div>
-          ))}
-        </motion.div>
 
-        {/* Pricing Packages */}
-        <motion.div
-          className="mb-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-        >
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <Tag className="w-6 h-6 text-terracotta" />
-            <h3 className="font-kanit text-2xl md:text-3xl font-bold text-deepForest">
-              แพ็คเกจราคา
-            </h3>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-            {packages.map((pkg) => (
-              <motion.div
-                key={pkg.id}
-                className={`relative bg-white rounded-xl p-6 border-2 transition-all duration-300 ${
-                  pkg.recommended
-                    ? 'border-terracotta shadow-lg scale-105'
-                    : 'border-sage/30 hover:border-sage shadow-md hover:shadow-lg'
-                }`}
-                variants={itemVariants}
-              >
-                {pkg.recommended && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <Badge variant="warning" size="sm" className="px-4 py-1">
-                      <Star className="w-3 h-3 inline mr-1" />
-                      แนะนำ
-                    </Badge>
-                  </div>
-                )}
-
-                <div className="text-center mb-4">
-                  <div className="font-kanit text-4xl md:text-5xl font-bold text-terracotta mb-2">
-                    {pkg.price}
-                    <span className="text-xl text-charcoal/60"> บาท</span>
-                  </div>
-                  <h4 className="font-kanit text-xl font-semibold text-deepForest mb-1">
-                    {pkg.name}
-                  </h4>
-                  <p className="font-sarabun text-sm text-charcoal/70">
-                    {pkg.activities} • {pkg.duration}
-                  </p>
+            {/* Chill Zone */}
+            <motion.div
+              variants={itemVariants}
+              className="bg-white rounded-xl p-6 shadow-lg border-2 border-sage/40"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="bg-sage/30 p-3 rounded-full">
+                  <Heart className="w-6 h-6 text-deepForest" />
                 </div>
-
-                <div className="bg-sage/10 rounded-lg p-3 mb-4">
-                  <p className="font-sarabun text-sm font-semibold text-deepForest text-center">
-                    {pkg.highlight}
-                  </p>
-                </div>
-
-                <ul className="space-y-2">
-                  {pkg.includes.map((item: string, idx: number) => (
-                    <li key={idx} className="flex items-start gap-2 font-sarabun text-sm text-charcoal/80">
-                      <Check className="w-4 h-4 text-sage flex-shrink-0 mt-0.5" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Promotions */}
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            {promotions.map((promo, idx) => (
-              <motion.div
-                key={idx}
-                className="bg-terracotta/10 border-2 border-terracotta/30 rounded-lg px-4 py-3 flex items-center gap-3"
-                variants={itemVariants}
-              >
-                {promo.icon === 'baby' ? (
-                  <Baby className="w-5 h-5 text-terracotta" />
-                ) : (
-                  <User className="w-5 h-5 text-terracotta" />
-                )}
-                <div>
-                  <p className="font-sarabun text-sm font-semibold text-deepForest">
-                    {promo.title}
-                  </p>
-                  <p className="font-sarabun text-xs text-charcoal/70">
-                    {promo.description}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
+                <h3 className="font-kanit text-2xl font-bold text-deepForest">
+                  Chill Zone
+                </h3>
+              </div>
+              <div className="aspect-video rounded-lg overflow-hidden mb-4">
+                <img
+                  src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80"
+                  alt="Chill Zone"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <p className="font-sarabun text-base text-charcoal/80 mb-3">
+                พื้นที่พักผ่อนท่ามกลางธรรมชาติ เหมาะสำหรับถ่ายรูปและนั่งชิล
+              </p>
+              <ul className="space-y-2">
+                <li className="flex items-start gap-2 font-sarabun text-sm text-charcoal/70">
+                  <Check className="w-4 h-4 text-sage flex-shrink-0 mt-0.5" />
+                  <span>บรรยากาศสวยงาม มุมถ่ายรูปเยอะ</span>
+                </li>
+                <li className="flex items-start gap-2 font-sarabun text-sm text-charcoal/70">
+                  <Check className="w-4 h-4 text-sage flex-shrink-0 mt-0.5" />
+                  <span>มีคาเฟ่และร้านอาหาร</span>
+                </li>
+                <li className="flex items-start gap-2 font-sarabun text-sm text-charcoal/70">
+                  <Check className="w-4 h-4 text-sage flex-shrink-0 mt-0.5" />
+                  <span>เหมาะสำหรับพักผ่อนและสังสรรค์</span>
+                </li>
+              </ul>
+            </motion.div>
           </div>
         </motion.div>
 
@@ -225,12 +203,12 @@ export default function Slide04({ isActive }: SlideProps) {
               </h3>
             </div>
             <ul className="font-sarabun text-base text-charcoal/80 space-y-2">
-              <li>• แนะนำแพ็คเกจ 499฿ (คุ้มค่า มี ATV ฟรี)</li>
-              <li>• เล่นได้ไม่จำกัดรอบภายในเวลาที่กำหนด</li>
-              <li>• แต่ละกิจกรรมใช้เวลา 5-15 นาที</li>
-              <li>• มีล็อกเกอร์ฝากของและห้องน้ำ</li>
+              <li>• กิจกรรมใช้เวลา 1-2 ชั่วโมง</li>
+              <li>• มีทั้ง ATV และพื้นที่นั่งชิล</li>
               <li>• สวมรองเท้าผ้าใบและเสื้อผ้าสบาย ๆ</li>
-              <li>• เปิดบริการ 09:00-18:00 น.</li>
+              <li>• มีห้องน้ำและร้านอาหาร</li>
+              <li>• บรรยากาศสวยงาม เหมาะถ่ายรูป</li>
+              <li>• ราคาและรายละเอียดจะแจ้งให้ทราบอีกครั้ง</li>
             </ul>
           </motion.div>
 
@@ -252,9 +230,9 @@ export default function Slide04({ isActive }: SlideProps) {
             </p>
             <ul className="font-sarabun text-base text-charcoal/80 space-y-2">
               <li>• เลื่อนเวลาไปคาเฟ่/ร้านอาหารก่อน</li>
-              <li>• เลือกกิจกรรมในร่ม (ยิงธนู, Paintball)</li>
               <li>• ไปช้อปปิ้งที่ Makro ก่อนเวลา</li>
               <li>• เช็คอินวิลล่าเร็วขึ้นและทำกิจกรรมที่วิลล่า</li>
+              <li>• พักผ่อนที่ Chill Zone ในร่ม</li>
             </ul>
           </motion.div>
         </motion.div>
@@ -267,10 +245,10 @@ export default function Slide04({ isActive }: SlideProps) {
           transition={{ delay: 0.8, duration: 0.6 }}
         >
           <p className="font-sarabun text-sm md:text-base text-charcoal/60">
-            📍 ที่ตั้ง: 299 หมู่ 4 ต.หมูสี อ.ปากช่อง จ.นครราชสีมา 30130
+            📍 Rapsodia Park Khao Yai - สวนสนุกและกิจกรรมกลางแจ้ง
           </p>
           <p className="font-sarabun text-sm md:text-base text-charcoal/60">
-            💡 อย่าลืมถ่ายรูปที่ต้นไม้รูปหัวใจและมุมสวย ๆ กันเยอะ ๆ นะ!
+            💡 อย่าลืมถ่ายรูปมุมสวย ๆ และเก็บความทรงจำดี ๆ กันเยอะ ๆ นะ!
           </p>
         </motion.div>
       </div>
