@@ -473,6 +473,7 @@ export const EXTERNAL_LINKS = {
   makroMap: 'https://maps.google.com/?q=Makro+Foodservice+Pak+Chong',
   charityMap: 'https://maps.app.goo.gl/XoyzzALf47VfxwQ36',
   kruaBanNaiPhonMap: 'https://maps.google.com/?q=ครัวบ้านนายพล+เขาใหญ่',
+  thongSomboonMap: 'https://maps.google.com/?q=Thong+Somboon+Club+Khao+Yai',
   shoppingChecklist: 'https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID',
   villaPhone: '081-234-5678',
 } as const;
